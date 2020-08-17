@@ -1,0 +1,26 @@
+<nav class="top-nav">
+  <ul>
+    <%
+      const navs = [{
+        title: '首页',
+        path: '/',
+        icon: ''
+      }, {
+        title: '文集',
+        path: '/collected',
+        icon: ''
+      }, {
+        title: '关于我',
+        path: '/about',
+        icon: ''
+      }]
+      navs.forEach((item, index) => {
+    %>
+    <li class="item<%= index == navCurrent ? ' current' : '' %>">
+      <a href="<%= item.path %>"><%= item.title %></a></li>
+    </li>
+    <% 
+      })
+    %>
+  </ul>
+</nav>

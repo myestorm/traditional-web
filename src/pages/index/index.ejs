@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- `\<\%= htmlWebpackPlugin.options.title \%\>` -%></title>
+  </head>
+  <body>
+    <div class="layout">
+      <%- include('../../components/header.ejs', {
+        navCurrent: 1
+      }) %>
+      <%- include('../../components/footer.ejs') %>
+    </div>
+  </body>
+</html>

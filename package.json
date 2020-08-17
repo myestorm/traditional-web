@@ -1,0 +1,40 @@
+{
+  "name": "traditional-web",
+  "version": "0.0.1",
+  "description": "Traditional web development，Multi-page application",
+  "main": "index.js",
+  "scripts": {
+    "serve": "set NODE_ENV=development && gulp serve",
+    "build": "set NODE_ENV=production && gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myestorm/traditional-web.git"
+  },
+  "keywords": [
+    "gulp",
+    "webpack",
+    "ejs",
+    "browersync",
+    "SSG"
+  ],
+  "author": "wenxue.cwx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/myestorm/traditional-web/issues"
+  },
+  "homepage": "https://github.com/myestorm/traditional-web#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.12",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-ejs": "^5.1.0",
+    "gulp-rename": "^2.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "http-proxy-middleware": "^1.0.5",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-stream": "^5.2.1"
+  }
+}
