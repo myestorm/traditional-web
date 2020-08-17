@@ -8,9 +8,11 @@ const webpack = require('webpack-stream')
 
 // webpack plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // other package
 const path = require('path')
+const glob = require('glob')
 const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
 const { createProxyMiddleware } = require('http-proxy-middleware')
@@ -44,19 +46,134 @@ const ejsToHtml = () => {
   .pipe(dest(`${tmpDir}/`))
 }
 
+const getConfigFiles = () => {
+  const folder = './src/pages/**/*.json'
+  const files = glob.sync(folder)
+  let entries = {} // webpack 入口文件
+  let htmlTemplate = [] // webpack HtmlWebpackPlugin
+  console.log(files)
+  files.forEach(filePath => {
+    const params = path.parse(filePath)
+    let file = {}
+    try {
+      file = require(path.resolve(__dirname, filePath))
+    } catch (err) {
+      throw new Error(`${filePath} must be JSON data`)
+    }
+    entries[file.filename] = path.resolve(__dirname, `${params.dir}/index.js`)
+
+    const template = params.dir.replace('src/pages', tmpDir)
+    htmlTemplate.push(new HtmlWebpackPlugin({
+      title: file.title,
+      filename: `${file.filename}.html`,
+      template: path.resolve(__dirname, `${template}/index.html`),
+      inject: true,
+      chunks: [file.filename],
+      minify: false,
+      favicon: path.resolve(__dirname, 'src/favicon.ico')
+    }))
+  })
+  return {
+    entries,
+    htmlTemplate
+  }
+}
+
 /**
  * webpack 构建文件
  */
+const { entries, htmlTemplate } = getConfigFiles()
 const build = () => {
   return src('./src/pages/index/index.js')
     .pipe(webpack({
+      entry: entries,
+      output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'scripts/[name]-[hash].js'
+      },
+      optimization: {
+        splitChunks: {
+          cacheGroups: {
+            commons: {
+              name: 'vendor',
+              chunks: 'initial',
+              minChunks: 1,
+              minSize: 0
+            }
+          }
+        },
+        chunkIds: 'natural'
+      },
+      resolve: {
+        extensions: ['.js', '.jsx', '.ejs', '.json', '.css', '.scss'],
+        modules: [
+          path.resolve('./'),
+          path.resolve('./node_modules')
+        ],
+        alias: {
+          '@': path.resolve(__dirname, 'src'),
+          '@assets': path.join(__dirname, 'src', 'assets')
+        }
+      },
+      module: {
+        rules: [
+          {
+            test: /\.scss$/,
+            use: [{
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: true,
+                publicPath: '../'
+              }
+            }, 'css-loader', 'sass-loader', {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: [
+                  path.resolve(__dirname, 'src/assets/scss/mixins.scss'),
+                  path.resolve(__dirname, 'src/assets/scss/variable.scss'),
+                  path.resolve(__dirname, 'src/assets/scss/vendor.scss')
+                ]
+              }
+            }]
+          },
+          // {
+          //   test: /\.js$/,
+          //   include: [path.resolve(__dirname, 'src')],
+          //   use: [{
+          //     loader: 'eslint-loader',
+          //     options: {
+          //       emitError: true
+          //     }
+          //   }, {
+          //     loader: 'babel-loader',
+          //     options: {
+          //       presets: ['@babel/preset-env']
+          //     }
+          //   }]
+          // },
+          {
+            test: /\.(png|jpg|gif)$/,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  outputPath: 'images',
+                  name: '[name].[hash].[ext]',
+                  esModule: false
+                }
+              }
+            ]
+          }
+        ]
+      },
       mode: ENV, // development production none
       stats: 'errors-only',
-      plugins: [new HtmlWebpackPlugin({
-        title: 'My App',
-        filename: 'index.html',
-        template: path.join(`./${tmpDir}`, 'index/index.html')
-      })]
+      plugins: htmlTemplate.concat([
+        new MiniCssExtractPlugin({
+          filename: 'styles/[name].[hash].css',
+          chunkFilename: 'styles/[name]-[id].[hash].css',
+        })
+      ])
     }))
     .pipe(dest(`${dist}/`))
     .pipe(reload({ stream: true })) // 刷新浏览器
