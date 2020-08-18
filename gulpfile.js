@@ -104,7 +104,7 @@ const build = () => {
         chunkIds: 'natural'
       },
       resolve: {
-        extensions: ['.js', '.jsx', '.ejs', '.json', '.css', '.scss'],
+        extensions: ['.js', '.jsx', '.ejs', '.json', '.css', '.scss', '.vue'],
         modules: [
           path.resolve('./'),
           path.resolve('./node_modules')
@@ -128,16 +128,15 @@ const build = () => {
               loader: 'sass-resources-loader',
               options: {
                 resources: [
-                  path.resolve(__dirname, 'src/assets/scss/mixins.scss'),
-                  path.resolve(__dirname, 'src/assets/scss/variable.scss'),
-                  path.resolve(__dirname, 'src/assets/scss/vendor.scss')
+                  path.resolve(__dirname, './src/assets/scss/variables.scss'),
+                  path.resolve(__dirname, './src/assets/scss/mixins.scss')
                 ]
               }
             }]
           },
           {
             test: /\.js$/,
-            exclude: /node_modules/,
+            exclude: /(node_modules|dist|.tmp)/,
             use: [{
               loader: 'babel-loader',
               options: {
@@ -202,6 +201,8 @@ const serve = () => {
   })
   // 监听ejs文件的修改
   watch(['./src/pages/**/*.ejs', './src/components/**/*.ejs'], series(ejsToHtml, build))
+  // 监听文件资源的修改
+  watch(['./src/**/*.*', '!./src/pages/**/*.ejs', '!./src/components/**/*.ejs'], series(build))
 }
 
 exports.serve = series(delTemp, ejsToHtml, build, serve)
