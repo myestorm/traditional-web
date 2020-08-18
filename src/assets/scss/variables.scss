@@ -4,10 +4,28 @@ $--color-primary: #009844; // 品牌色
 // text color
 $--font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 $--text-primary: $--color-primary;
+$--text-regular: #333333;
+$--text-secondary: #666666;
+$--text-placeholder: #999999;
+
+// text link color
+$--color-link: #333333;
+$--color-hover: $--color-primary;
+$--color-active: #333333;
+$--color-transition: all 200ms;
 
 // font
 $--font-small: 12px;
 $--font-normal: 14px;
 $--font-large: 16px;
+$--font-x-large: 18px;
+
+// height
+$--header-height: 64px;
+
+// gap
+$--gap: 15px;
+$--gap-lager: 30px;
+$--gap-small: 5px;
 
 $--class-prefix: 'totonoo--';

@@ -161,6 +161,19 @@ const build = () => {
                 }
               }
             ]
+          },
+          {
+            test: /\.(woff|svg|eot|ttf)$/,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  outputPath: 'font',
+                  name: '[name].[hash].[ext]',
+                  esModule: false
+                }
+              }
+            ]
           }
         ]
       },

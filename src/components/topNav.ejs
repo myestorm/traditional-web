@@ -1,23 +1,26 @@
-<nav class="top-nav">
+<nav class="totonoo--top-nav">
   <ul>
     <%
       const navs = [{
         title: '首页',
         path: '/',
-        icon: ''
+        icon: 'icon-home'
       }, {
         title: '文集',
         path: '/collected',
-        icon: ''
+        icon: 'icon-docs'
       }, {
         title: '关于我',
         path: '/about',
-        icon: ''
+        icon: 'icon-share'
       }]
       navs.forEach((item, index) => {
     %>
     <li class="item<%= index == navCurrent ? ' current' : '' %>">
-      <a href="<%= item.path %>"><%= item.title %></a></li>
+      <a href="<%= item.path %>">
+        <i class="iconfont <%= item.icon %>"></i>
+        <%= item.title %>
+      </a>
     </li>
     <% 
       })

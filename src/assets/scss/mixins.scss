@@ -1,16 +1,50 @@
 @mixin font-12px {
-  font-size: 12px;
+  font-size: $--font-small;
   line-height: 16px;
 }
 @mixin font-14px {
-  font-size: 14px;
+  font-size: $--font-normal;
   line-height: 20px;
 }
 @mixin font-16px {
-  font-size: 16px;
+  font-size: $--font-large;
   line-height: 24px;
 }
 @mixin font-18px {
-  font-size: 18px;
+  font-size: $--font-x-large;
   line-height: 32px;
+}
+@mixin box-shadow {
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,.16);
+}
+@mixin box-shadow-hover {
+  box-shadow: 0 2px 8px 0 rgba(0,152,68,.16);
+}
+@mixin resetMP {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@mixin textLink($size: 14, $color: $--color-link, $hover: $--color-hover, $active: $--color-active) {
+  @if $size == 12 {
+    @include font-12px;
+  }
+  @if $size == 14 {
+    @include font-14px;
+  }
+  @if $size == 16 {
+    @include font-16px;
+  }
+  @if $size == 18 {
+    @include font-18px;
+  }
+  text-decoration: none;
+  transition: $--color-transition;
+  color: $color;
+  &:hover {
+    color: $hover;
+  }
+  &:active {
+    color: $active;
+  }
 }
