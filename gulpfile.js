@@ -23,7 +23,7 @@ const ENV = process.env ? ((process.env.NODE_ENV ? process.env.NODE_ENV.trim() :
 
 /**
  * 删除目录
- * @param {Function} cb 
+ * @param {Function} cb
  */
 const delTemp = (cb) => {
   return del([
@@ -39,19 +39,18 @@ const delTemp = (cb) => {
  */
 const ejsToHtml = () => {
   return src('./src/pages/**/*.ejs')
-  .pipe(ejs({
-    current: '1'
-  }))
-  .pipe(rename({ extname: '.html' }))
-  .pipe(dest(`${tmpDir}/`))
+    .pipe(ejs({
+      current: '1'
+    }))
+    .pipe(rename({ extname: '.html' }))
+    .pipe(dest(`${tmpDir}/`))
 }
 
 const getConfigFiles = () => {
   const folder = './src/pages/**/*.json'
   const files = glob.sync(folder)
-  let entries = {} // webpack 入口文件
-  let htmlTemplate = [] // webpack HtmlWebpackPlugin
-  console.log(files)
+  const entries = {} // webpack 入口文件
+  const htmlTemplate = [] // webpack HtmlWebpackPlugin
   files.forEach(filePath => {
     const params = path.parse(filePath)
     let file = {}
@@ -136,21 +135,21 @@ const build = () => {
               }
             }]
           },
-          // {
-          //   test: /\.js$/,
-          //   include: [path.resolve(__dirname, 'src')],
-          //   use: [{
-          //     loader: 'eslint-loader',
-          //     options: {
-          //       emitError: true
-          //     }
-          //   }, {
-          //     loader: 'babel-loader',
-          //     options: {
-          //       presets: ['@babel/preset-env']
-          //     }
-          //   }]
-          // },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [{
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }, {
+              loader: 'eslint-loader',
+              options: {
+                emitError: true
+              }
+            }]
+          },
           {
             test: /\.(png|jpg|gif)$/,
             use: [
@@ -171,7 +170,7 @@ const build = () => {
       plugins: htmlTemplate.concat([
         new MiniCssExtractPlugin({
           filename: 'styles/[name].[hash].css',
-          chunkFilename: 'styles/[name]-[id].[hash].css',
+          chunkFilename: 'styles/[name]-[id].[hash].css'
         })
       ])
     }))
