@@ -14,7 +14,7 @@ const path = require('path')
 const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
 const { createProxyMiddleware } = require('http-proxy-middleware')
-const { dist, tmpDir, proxys } = require('./config/config.default')
+const { dist, tmpDir, proxys, port } = require('./config/config.default')
 
 // 环境变量
 const ENV = process.env ? ((process.env.NODE_ENV ? process.env.NODE_ENV.trim() : '') || 'production') : 'production'
@@ -80,7 +80,7 @@ const serve = () => {
       index: 'index.html',
       middleware: middleware
     },
-    port: 8080,
+    port: port,
     open: false,
     notify: false
   })
