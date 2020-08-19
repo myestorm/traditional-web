@@ -48,3 +48,7 @@
     color: $active;
   }
 }
+@mixin blockStyle {
+  transition: $--color-transition;
+  box-sizing: border-box;
+}

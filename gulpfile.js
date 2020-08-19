@@ -1,4 +1,4 @@
-const { series, src, dest, watch } = require('gulp')
+const { series, parallel, src, dest, watch } = require('gulp')
 
 // gulp plugins
 const ejs = require('gulp-ejs')
@@ -190,6 +190,11 @@ const build = () => {
     .pipe(reload({ stream: true })) // 刷新浏览器
 }
 
+const copyAssets = () => {
+  return src('./src/assets/images/covers/**/*.*')
+    .pipe(dest(`${dist}/images/covers/`))
+}
+
 /**
  * browser-sync 启用http服务
  */
@@ -215,8 +220,20 @@ const serve = () => {
   // 监听ejs文件的修改
   watch(['./src/pages/**/*.ejs', './src/components/**/*.ejs'], series(ejsToHtml, build))
   // 监听文件资源的修改
-  watch(['./src/**/*.*', '!./src/pages/**/*.ejs', '!./src/components/**/*.ejs'], series(build))
+  watch(['./src/**/*.*', '!./src/pages/**/*.ejs', '!./src/components/**/*.ejs'], parallel(copyAssets, build))
 }
 
-exports.serve = series(delTemp, ejsToHtml, build, serve)
-exports.default = series(delTemp, ejsToHtml, build)
+exports.serve = series(
+  delTemp,
+  parallel(
+    copyAssets,
+    series(ejsToHtml, build, serve)
+  )
+)
+exports.default = series(
+  delTemp,
+  parallel(
+    copyAssets,
+    series(ejsToHtml, build)
+  )
+)

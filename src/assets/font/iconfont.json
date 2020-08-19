@@ -6,6 +6,83 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15838462",
+      "name": "discount",
+      "font_class": "discount",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "15838493",
+      "name": "link",
+      "font_class": "link",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "15838515",
+      "name": "navigation",
+      "font_class": "navigation",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "15838517",
+      "name": "prompt",
+      "font_class": "prompt",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "15838518",
+      "name": "move",
+      "font_class": "move",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "15838519",
+      "name": "refresh",
+      "font_class": "refresh",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "15838523",
+      "name": "pin",
+      "font_class": "pin",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "15838527",
+      "name": "scanning",
+      "font_class": "scanning",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "15838446",
+      "name": "calendar",
+      "font_class": "calendar",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "15838540",
+      "name": "time",
+      "font_class": "time",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "15838525",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
       "icon_id": "15838429",
       "name": "arrow-down",
       "font_class": "arrow-down",
