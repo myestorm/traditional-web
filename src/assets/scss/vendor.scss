@@ -129,10 +129,15 @@ a {
   .item {
     cursor: pointer;
     border-bottom: 1px $--border-secondary solid;
-    padding-bottom: $--gap-lager;
     margin-bottom: $--gap-lager;
+    transition: $--color-transition;
+    @include box-shadow();
+    padding: $--gap-lager;
     &:last-child {
       border-bottom: 0;
+    }
+    &:hover {
+      @include box-shadow-hover();
     }
     .title {
       @include resetMP();
