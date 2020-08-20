@@ -5,7 +5,25 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: $--font-family;
-  background-color: #f8f8f8;
+  background-color: #fafafa;
+}
+
+/* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #eeeeee;
+}
+ 
+/* 定义滚动条轨道 内阴影+圆角 */
+::-webkit-scrollbar-track {
+    background-color: #eeeeee;
+}
+ 
+/* 定义滑块 内阴影+圆角 */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: $--text-thin;
 }
 
 a {
@@ -17,7 +35,7 @@ a {
 }
 
 .#{$--class-prefix}layout {
-  padding-top: $--header-height + 6px;
+  padding-top: $--header-height;
 }
 .#{$--class-prefix}top-header {
   width: 100%;
@@ -84,6 +102,7 @@ a {
     border-radius: 32px;
     outline: none;
     padding: 0 $--gap;
+    transition: $--color-transition;
     &:focus {
       @include box-shadow-hover();
       border-color: $--color-primary;
@@ -109,33 +128,26 @@ a {
 }
 
 .#{$--class-prefix}main-box {
-  max-width: 1000px;
+  max-width: 1216px;
   padding: $--gap-lager;
   margin: 0 auto;
   display: flex;
   .#{$--class-prefix}main {
     flex: 1;
     margin-right: $--gap-lager;
-    @include blockStyle();
   }
   .#{$--class-prefix}aside {
     width: 300px;
-    @include blockStyle();
-    background-color: #ffffff;
   }
 }
 
 .#{$--class-prefix}post-list {
   .item {
     cursor: pointer;
-    border-bottom: 1px $--border-secondary solid;
+    border: 1px $--border-regular solid;
     margin-bottom: $--gap-lager;
-    transition: $--color-transition;
-    @include box-shadow();
+    transition: box-shadow .35s ease;
     padding: $--gap-lager;
-    &:last-child {
-      border-bottom: 0;
-    }
     &:hover {
       @include box-shadow-hover();
     }
@@ -144,6 +156,7 @@ a {
       a {
         font-size: $--font-large;
         color: $--text-primary;
+        @include hoverLine();
       }
       margin-bottom: $--gap;
     }
@@ -151,12 +164,13 @@ a {
       width: 100%;
       display: block;
       border-radius: 4px;
+      margin-bottom: $--gap;
     }
     .desc {
       font-size: $--font-normal;
       color: $--text-placeholder;
       @include resetMP();
-      padding: $--gap 0;
+      margin-bottom: $--gap;
     }
     .info {
       ul {
@@ -177,4 +191,45 @@ a {
       }
     }
   }
+}
+
+// 水波纹效果
+.#{$--class-prefix}ripple {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #ffffff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  }
+  &:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+  }
+}
+
+// 按钮
+.#{$--class-prefix}button-primary {
+  width: 100%;
+  border: 0;
+  color: #ffffff;
+  border-radius: 4px;
+  background-color: $--color-primary;
+  padding: 5px 10px;
+  cursor: pointer;
+  outline: none;
+  @include font-16px();
 }

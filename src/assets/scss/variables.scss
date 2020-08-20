@@ -13,11 +13,11 @@ $--text-thin: #cccccc;
 $--color-link: #333333;
 $--color-hover: $--color-primary;
 $--color-active: #333333;
-$--color-transition: all 200ms;
+$--color-transition: all 200ms ease;
 
 // border color
 $--border-primary: $--color-primary;
-$--border-regular: #dddddd;
+$--border-regular: #e8e8e8;
 $--border-secondary: #eeeeee;
 
 // font
@@ -27,7 +27,7 @@ $--font-large: 16px;
 $--font-x-large: 18px;
 
 // height
-$--header-height: 64px;
+$--header-height: 60px;
 
 // gap
 $--gap: 15px;
