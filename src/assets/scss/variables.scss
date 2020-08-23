@@ -4,15 +4,16 @@ $--color-primary: #009844; // 品牌色
 // text color
 $--font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 $--text-primary: $--color-primary;
-$--text-regular: #333333;
-$--text-secondary: #666666;
-$--text-placeholder: #999999;
-$--text-thin: #cccccc;
+$--text-black: #333333;
+$--text-regular: #767676;
+$--text-secondary: #9e9e9e;
+$--text-placeholder: #b8b8b8;
+$--text-thin: #cecece;
 
 // text link color
-$--color-link: #333333;
+$--color-link: $--text-regular;
 $--color-hover: $--color-primary;
-$--color-active: #333333;
+$--color-active: $--text-regular;
 $--color-transition: all 200ms ease;
 
 // border color

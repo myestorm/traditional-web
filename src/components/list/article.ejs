@@ -1,0 +1,52 @@
+<%
+const data = [
+  {
+    title: '为什么前端工程师需要掌握设计工具',
+    desc: '前端有时候又被称为页面仔，切图仔，原因就是前端有一部分工作就是将设计稿转换成html页面。如果不掌握一个设计工具，作为页面仔的工作要提效是不可能的。比如我最喜欢的Photoshop，简称PS，如果记不清快捷键',
+    pulishDate: '2020-06-20 23:20:20',
+    categories: '基础教程',
+    tags: ['前端设计', '工具', 'js']
+  },
+  {
+    title: 'js和nodejs的关系与区别',
+    desc: 'Javascript（JS）是一种脚本语言，主要用于 Web。它用于增强 HTML 页面，通常可以嵌入 HTML 代码中。JavaScript 是一种解释型语言。因此，它不需要编译。JavaScript 以交互式和动态的方式呈现网页。这允许页面对事件做出反应，展示特殊效果，接受可变文本，验证数据，创建 cookie，检测用户的浏览器等',
+    pulishDate: '2020-06-20 23:20:20',
+    categories: '基础教程',
+    tags: ['前端设计', '工具', 'Javascript']
+  },
+  {
+    title: '写在前面的话',
+    desc: '我是一个前端开发者，而且是干了很长时间的前端。现在终于开始动手总结一下自己的学习经验了，出发点很简单，也许能帮到一个人，就算只帮到一个也算是完成了他的意义，自己这么多年的经验没有白费了',
+    pulishDate: '2020-06-20 23:20:20',
+    categories: '基础教程',
+    tags: ['前端设计', '工具', '总结']
+  },
+  {
+    title: '说说什么是前端',
+    desc: '首先我说的是一家之言，我也不是专家教授，意思就是这个是我这么认为，没有什么好反驳的，也没啥好辩论的，没意思，还不如去看几页金庸的武侠小说',
+    pulishDate: '2020-06-20 23:20:20',
+    categories: '基础教程',
+    tags: ['前端设计', '工具', '一家之言']
+  }
+]
+%>
+<% data.forEach(item => { %>
+<div class="item">
+  <h3 class="title">
+    <a href="/detail.html"><%= item.title %></a>
+  </h3>
+  <p class="desc"><%= item.desc %>...</p>
+  <div class="info">
+    <ul>
+      <li><i class="iconfont icon-folder-close"></i><a href="/categories.html"><%= item.categories %></a></li>
+      <li><i class="iconfont icon-time"></i><%= item.pulishDate %></li>
+      <li>
+        <i class="iconfont icon-discount"></i>
+        <% item.tags.forEach(sub => { %>
+        <a href="/tags.html"><%= sub %></a>
+        <% }) %>
+      </li>
+    </ul>
+  </div>
+</div>
+<% }) %>

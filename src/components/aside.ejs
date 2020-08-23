@@ -1,0 +1,55 @@
+<%
+const categories = [
+  {
+    title: '基本概念',
+    count: '1'
+  },
+  {
+    title: 'Vue基础教程',
+    count: '10'
+  },
+  {
+    title: 'Nodejs',
+    count: '23'
+  },
+  {
+    title: 'Express',
+    count: '17'
+  }
+]
+const tags = [
+  '前端',
+  '学习',
+  'javascript',
+  'css',
+  '标签',
+  '注释',
+  '设计工具',
+  'node',
+  'nodejs',
+  'CSS常用选择器'
+]
+%>
+<aside class="totonoo--aside">
+  <div class="side-nav aside-item">
+    <h2><i class="iconfont icon-file-open"></i>文章分类 <small>Category</small></h2>
+    <nav class="side-nav-list">
+      <ul>
+        <% categories.forEach(item => { %>
+        <li><a href="/categories.html"><strong><%= item.title %></strong> <small><%= item.count %></small></a></li>
+        <% }) %>
+      </ul>
+    </nav>
+  </div>
+  <div class="side-nav aside-item">
+    <h2><i class="iconfont icon-discount"></i>文章标签 <small>Tags</small></h2>
+    <div class="side-tag-list">
+      <% tags.forEach(item => { %>
+      <a href="/tags.html"><%= item %></a>
+      <% }) %>
+    </div>
+  </div>
+  <div class="gongzonghao">
+    <img src="./images/covers/qrcode.png">
+  </div>
+</aside>

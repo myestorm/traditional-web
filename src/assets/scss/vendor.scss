@@ -10,8 +10,8 @@ html, body {
 
 /* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     background-color: #eeeeee;
 }
  
@@ -22,7 +22,7 @@ html, body {
  
 /* 定义滑块 内阴影+圆角 */
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
+  border-radius: 6px;
   background-color: $--text-thin;
 }
 
@@ -78,13 +78,16 @@ a {
     ul {
       display: flex;
       @include resetMP();
+      align-items: center;
+      justify-content: center;
       li {
         @include resetMP();
         a {
           display: block;
-          padding: 0 20px;
+          padding: 0 $--gap;
           font-size: $--font-large;
           line-height: $--header-height;
+          color: $--text-black;
           &:hover {
             background-color: #f5f5f5;
           }
@@ -116,7 +119,7 @@ a {
     right: 10px;
     top: 50%;
     margin-top: -8px;
-    color: $--text-thin;
+    color: $--text-primary;
   }
 }
 .#{$--class-prefix}page-footer {
@@ -134,28 +137,94 @@ a {
   display: flex;
   .#{$--class-prefix}main {
     flex: 1;
-    margin-right: $--gap-lager;
+    margin-left: $--gap-lager;
   }
   .#{$--class-prefix}aside {
-    width: 300px;
+    width: 186px;
+    .aside-item {
+      margin-bottom: $--gap;
+      h2 {
+        font-weight: normal;
+        @include font-14px();
+        @include resetMP();
+        color: $--text-placeholder;
+        .iconfont {
+          @include font-16px();
+          margin-right: 5px;
+        }
+        small {
+          font-size: $--font-small;
+          color: $--text-thin;
+        }
+      }
+      .side-nav-list {
+        ul {
+          @include resetMP();
+          padding: 10px 0;
+          li {
+            padding: 5px 0;
+            a {
+              @include hoverLine();
+              @include font-14px();
+              display: flex;
+            }
+            strong {
+              font-weight: normal;
+            }
+            small {
+              color: $--text-placeholder;
+              flex: 1;
+              text-align: right;
+              @include font-12px();
+            }
+          }
+        }
+      }
+      .side-tag-list {
+        padding: 10px 0;
+        a {
+          display: inline-block;
+          white-space: nowrap;
+          @include font-14px();
+          @include hoverLine();
+          margin-bottom: 5px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .gongzonghao {
+      img {
+        width: 100%;
+        border-radius: 4px;
+      }
+    }
   }
 }
 
 .#{$--class-prefix}post-list {
   .item {
     cursor: pointer;
-    border: 1px $--border-regular solid;
-    margin-bottom: $--gap-lager;
-    transition: box-shadow .35s ease;
+    @include blockLine();
     padding: $--gap-lager;
-    &:hover {
-      @include box-shadow-hover();
-    }
     .title {
       @include resetMP();
+      position: relative;
+      padding-left: $--gap;
+      &:before {
+        width: 3px;
+        height: 18px;
+        display: block;
+        background-color: $--color-primary;
+        border-radius: 3px;
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -7px;
+        overflow: hidden;
+      }
       a {
         font-size: $--font-large;
-        color: $--text-primary;
         @include hoverLine();
       }
       margin-bottom: $--gap;
@@ -165,6 +234,7 @@ a {
       display: block;
       border-radius: 4px;
       margin-bottom: $--gap;
+      display: none;
     }
     .desc {
       font-size: $--font-normal;
@@ -178,14 +248,16 @@ a {
         @include resetMP();
         li {
           padding-right: $--gap;
-          font-size: $--font-normal;
+          font-size: $--font-small;
           color: $--text-secondary;
           .iconfont {
             margin-right: 6px;
             color: $--text-placeholder;
           }
           a {
-            @include textLink(14, $--text-secondary);
+            @include textLink(12, $--text-secondary);
+            @include hoverLine();
+            margin-right: $--gap-small;
           }
         }
       }
@@ -228,8 +300,75 @@ a {
   color: #ffffff;
   border-radius: 4px;
   background-color: $--color-primary;
-  padding: 5px 10px;
+  padding: 10px;
   cursor: pointer;
   outline: none;
-  @include font-16px();
+  @include font-14px();
+}
+
+// 分页
+.#{$--class-prefix}pagination {
+  padding: $--gap;
+  ul {
+    @include resetMP();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li {
+      padding: 0 5px;
+      &:hover a {
+        background-color: #f1f1f1;
+      }
+    }
+    .num a, .prev span, .prev a, .current span, .next span, .next a, .ellipsis span {
+      display: block;
+      padding: 10px $--gap;
+      border: 1px $--border-regular solid;
+      border-radius: 4px;
+      transition: $--color-transition;
+    }
+    .current span {
+      background-color: $--color-primary;
+      border-color: $--color-primary;
+      color: #ffffff;
+    }
+  }
+}
+
+// 面包屑
+.#{$--class-prefix}breadcrumb {
+  @include blockLine();
+  padding: $--gap $--gap-lager;
+  ul {
+    @include resetMP();
+    display: flex;
+    align-items: center;
+    .separate {
+      color: $--text-placeholder;
+      padding: 0 $--gap-small;
+      i {
+        font-size: $--font-normal;
+      }
+    }
+    .count {
+      flex: 1;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: $--text-placeholder;
+      font-size: $--font-small;
+      h1 {
+        @include resetMP();
+        font-size: $--font-small;
+        display: inline-block;
+        color: $--color-primary;
+        padding: 0 $--gap-small;
+      }
+      small {
+        color: $--color-primary;
+        padding: 0 $--gap-small;
+      }
+    }
+  }
 }

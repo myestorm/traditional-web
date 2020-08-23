@@ -49,20 +49,32 @@
   }
 }
 // hover自动生成下划线动画
-@mixin hoverLine {
+@mixin hoverLine ($height: 2px) {
   position: relative;
   &:before{
     content: "";
     position: absolute;
     left: 0;
     bottom: -4px;
-    height: 2px;
+    height: $height;
     width: 100%;
     background: $--color-primary;
     transform: scale(0);
     transition: all 0.3s;
+    border-radius: $height;
   }
   &:hover:before{
     transform: scale(1);
+  }
+}
+
+@mixin blockLine {
+  border: 1px $--border-regular solid;
+  margin-bottom: $--gap-lager;
+  transition: box-shadow .35s ease;
+  border-radius: 4px;
+  background-color: #ffffff;
+  &:hover {
+    @include box-shadow-hover();
   }
 }
