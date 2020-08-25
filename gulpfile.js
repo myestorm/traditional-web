@@ -1,4 +1,5 @@
 const { series, parallel, src, dest, watch } = require('gulp')
+const generateData = require('./task/generateData')
 
 // gulp plugins
 const ejs = require('gulp-ejs')
@@ -222,6 +223,9 @@ const serve = () => {
   // 监听文件资源的修改
   watch(['./src/**/*.*', '!./src/pages/**/*.ejs', '!./src/components/**/*.ejs'], parallel(copyAssets, build))
 }
+
+// 文档数据
+exports.generateData = generateData
 
 exports.serve = series(
   delTemp,

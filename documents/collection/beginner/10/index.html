@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>to do list</title>
+  </head>
+  <body>
+    <div>
+      <ul id="to-do-list"></ul>
+      <button id="add">添加</button>
+    </div>
+    <script>
+      const id = 'to-do-list'
+      const container = document.querySelector(`#${id}`)
+      const btn = document.querySelector('#add')
+      const ajax = (method = 'GET', url, data = {}) => {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest()
+          // 请求成功回调函数
+          xhr.onload = e => {
+            resolve(JSON.parse(xhr.response))
+          }
+          // 请求出错
+          xhr.onerror = e => {
+            reject({
+              code: -1,
+              msg: '请求出错'
+            })
+          }
+          // 请求超时
+          xhr.ontimeout = e => {
+            reject({
+              code: -2,
+              msg: '请求超时'
+            })
+          }
+          xhr.open(method, url, true);
+          xhr.send(data)
+        })
+      }
+      // 获取列表
+      ajax('GET', 'http://yapi.totonoo.com/mock/11/list').then(res => {
+        let html = ''
+        res.data.forEach(item => {
+          html += `<li><label><input type="checkbox"> ${item.title}</label></li>`
+        })
+        container.innerHTML = html
+      }).catch(err => {
+        alert(err.msg)
+      })
+      // 添加事件
+      btn.addEventListener('click', () => {
+        const formData = new FormData()
+        formData.append('username', 'lurenjia');
+        ajax('POST', 'http://yapi.totonoo.com/mock/11/add', formData).then(res => {
+          const item = document.createElement('li')
+          item.innerHTML = '<label><input type="checkbox"> 新增的</label>'
+          container.appendChild(item)
+        }).catch(err => {
+          alert(err.msg)
+        })
+      })
+    </script>
+  </body>
+</html>

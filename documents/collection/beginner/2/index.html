@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>网页标题</title>
+    <meta name="keywords" content="文档关键词">
+    <meta name="description" content="文档描述">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="main.css" media="all"> <!-- 方式1：引入外部css文件 -->
+	<!-- 方式2：css块 -->
+	<style>
+	h1 { font-size: 16px; color: red; }
+	div #id .class-name a:hover { color: red }
+	.class-name a:hover { color: green }
+	</style>
+  </head>
+  <body>
+	<div class="text">命中外部css的样式</div>
+	<h1>totonoo</h1>
+	<!-- 方式3：直接写在元素上 -->
+	<div style="color: green;">心中的大草原</div>
+	
+	<div>
+		<div id="id">
+			<div class="class-name">
+				<a href="#">我是链接</a>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
