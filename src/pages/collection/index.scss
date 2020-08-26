@@ -1,47 +1,83 @@
-.#{$--class-prefix}article {
-  @include blockLine();
-  padding: $--gap-lager;
-}
-.#{$--class-prefix}article-title {
-  padding: 0 0 $--gap-lager;
-  h1 {
-    font-size: 24px;
-    font-weight: normal;
+.#{$--class-prefix}layout-collection {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  .#{$--class-prefix}top-header {
+    position: inherit;
   }
-  .info {
+}
+.#{$--class-prefix}collection-box {
+  display: flex;
+  flex: 1;
+}
+.#{$--class-prefix}collection-catalog {
+  width: 360px;
+  border-right: 1px $--border-secondary solid;
+  padding: $--gap-lager;
+  box-sizing: border-box;
+  h2 {
+    @include resetMP();
+    @include font-14px();
+    font-weight: normal;
+    margin-bottom: $--gap;
+    color: $--text-secondary;
+  }
+  .catalog-box {
     ul {
-      display: flex;
       @include resetMP();
       li {
-        padding-right: $--gap;
-        font-size: $--font-normal;
-        color: $--text-secondary;
-        .iconfont {
-          margin-right: 6px;
-          color: $--text-placeholder;
-        }
-        a {
-          @include textLink(14, $--text-secondary);
-          @include hoverLine();
-          margin-right: $--gap-small;
-        }
+        padding: $--gap-small 0;
+      }
+      a {
+        @include font-14px();
       }
     }
   }
 }
-.#{$--class-prefix}article-related {
-  padding: $--gap-lager 0;
-  ul {
+.#{$--class-prefix}collection-article {
+  flex: 1;
+  overflow: auto;
+  background-color: #ffffff;
+  .flex {
     display: flex;
-    @include resetMP();
-    li {
-      width: 50%;
-      &:last-child {
-        text-align: right;
-      }
+    padding: $--gap-lager;
+  }
+  .#{$--class-prefix}collection-article-main {
+    flex: 1;
+    .#{$--class-prefix}markdown-style {
+      max-width: 760px;
+      margin: 0 auto;
     }
-    a {
-      @include textLink(16, $--color-primary)
+  }
+  .#{$--class-prefix}collection-nav {
+    width: 320px;
+    margin-left: $--gap-lager;
+    ul {
+      @include resetMP();
+      li {
+        border-left: 2px $--border-secondary solid;
+        box-sizing: border-box;
+        padding: 2px 0;
+        transition: $--color-transition;
+        a {
+          @include font-12px();
+        }
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+      @for $i from 1 through 6 {
+        .h#{$i} {
+           padding-left: (15px * $i);
+        }
+      }
+      .current {
+        border-left-color: $--color-primary;
+        a {
+          color: $--color-primary;
+        }
+      }
     }
   }
 }
