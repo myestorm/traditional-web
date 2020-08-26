@@ -118,6 +118,10 @@ const build = () => {
       module: {
         rules: [
           {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
+          },
+          {
             test: /\.scss$/,
             use: [{
               loader: MiniCssExtractPlugin.loader,

@@ -6,6 +6,9 @@ html, body {
   padding: 0;
   font-family: $--font-family;
   background-color: #fafafa;
+  textarea, pre, code {
+    font-family: $--font-family;
+  }
 }
 
 /* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
@@ -90,6 +93,7 @@ a {
           color: $--text-black;
           &:hover {
             background-color: #f5f5f5;
+            color: $--color-primary;
           }
         }
       }
