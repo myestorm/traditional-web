@@ -36,7 +36,13 @@ const tags = [
     <nav class="side-nav-list">
       <ul>
         <% categories.forEach(item => { %>
-        <li><a href="/categories.html"><strong><%= item.title %></strong> <small><%= item.count %></small></a></li>
+        <li>
+          <a href="javascript:;" class="first-level"><%= item.title %></a>
+          <ul>
+            <li><a href="/categories.html"><strong>子分类1</strong> <small><%= item.count %></small></a></li>
+            <li><a href="/categories.html"><strong></strong>子分类2</strong> <small><%= item.count %></small></a></li>
+          </ul>
+        </li>
         <% }) %>
       </ul>
     </nav>

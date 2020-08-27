@@ -5,58 +5,57 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: $--font-family;
-  background-color: #fafafa;
+  background-color: $--color-bg;
+  color: $--color-gray-dark;
   textarea, pre, code {
     font-family: $--font-family;
   }
 }
 
-/* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-    background-color: #eeeeee;
+  width: $--border-radius-6px;
+  height: $--border-radius-6px;
+  background-color: #eeeeee;
 }
- 
-/* 定义滚动条轨道 内阴影+圆角 */
+
 ::-webkit-scrollbar-track {
-    background-color: #eeeeee;
+  background-color: #eeeeee;
 }
- 
-/* 定义滑块 内阴影+圆角 */
+
 ::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background-color: $--text-thin;
+  border-radius: $--border-radius-6px;
+  background-color: $--color-gray;
 }
 
 a {
-  @include textLink();
+  text-decoration: none;
+  color: $--color-gray-dark;
+  transition: $--transition;
+  &:hover {
+    color: $--color-primary;
+  }
 }
 
-.#{$--class-prefix}link-small {
-  @include textLink(12, $--color-primary);
+.#{$--prefix}layout {
+  padding-top: $--height-header;
 }
 
-.#{$--class-prefix}layout {
-  padding-top: $--header-height;
-}
-.#{$--class-prefix}top-header {
+.#{$--prefix}top-header {
+  @include box-shadow-light();
   width: 100%;
-  height: $--header-height;
+  height: $--height-header;
   position: fixed;
   left: 0;
   top: 0;
   z-index: 10;
-  background-color: #ffffff;
-  @include box-shadow();
+  background-color: $--color-white;
   display: flex;
   align-items: center;
   box-sizing: border-box;
   padding-right: $--gap;
   h1 {
-    @include resetMP();
+    @include reset();
     font-size: 28px;
-    font-weight: normal;
     small {
       font-weight: lighter;
       font-size: 28px;
@@ -67,6 +66,10 @@ a {
     display: flex;
     align-items: center;
     padding: 0 $--gap;
+    color: $--color-gray-dark;
+    &:hover {
+      color: $--color-primary;
+    }
   }
   .logo-icon {
     width: 36px;
@@ -76,23 +79,24 @@ a {
     display: block;
     margin-right: $--gap-small;
   }
-  .#{$--class-prefix}top-nav {
+  .#{$--prefix}top-nav {
     flex: 1;
     ul {
+      @include reset();
       display: flex;
-      @include resetMP();
       align-items: center;
       justify-content: center;
       li {
-        @include resetMP();
+        @include reset();
         a {
           display: block;
           padding: 0 $--gap;
           font-size: $--font-large;
-          line-height: $--header-height;
-          color: $--text-black;
+          line-height: $--height-header;
+          color: $--color-black-light;
+          transition: $--transition;
           &:hover {
-            background-color: #f5f5f5;
+            background-color: $--color-bg-dark;
             color: $--color-primary;
           }
         }
@@ -100,22 +104,23 @@ a {
     }
   }
 }
-.#{$--class-prefix}top-search {
+
+.#{$--prefix}top-search {
   position: relative;
   input {
     width: 180px;
-    height: 32px;
-    border: 1px $--border-regular solid;
-    border-radius: 32px;
+    height: $--border-radius-32px;
+    border: $--border;
+    border-radius: $--border-radius-32px;
     outline: none;
     padding: 0 $--gap;
-    transition: $--color-transition;
+    transition: $--transition;
     &:focus {
-      @include box-shadow-hover();
+      @include box-shadow();
       border-color: $--color-primary;
     }
     &::placeholder {
-      color: $--text-placeholder;
+      color: $--color-gray;
     }
   }
   .icon-search {
@@ -123,63 +128,80 @@ a {
     right: 10px;
     top: 50%;
     margin-top: -8px;
-    color: $--text-primary;
+    color: $--color-primary;
   }
 }
-.#{$--class-prefix}page-footer {
+
+.#{$--prefix}page-footer {
   font-size: $--font-small;
-  color: $--text-placeholder;
+  color: $--color-gray-light;
   text-align: center;
   padding: $--gap-lager 0;
-  border-top: 1px $--border-secondary solid;
+  border-top: $--border-bottom;
+  a {
+    @include link(12, $--color-primary, $--color-contrast, $--color-contrast-dark)
+  }
 }
 
-.#{$--class-prefix}main-box {
+.#{$--prefix}main-box {
   max-width: 1216px;
   padding: $--gap-lager;
   margin: 0 auto;
   display: flex;
-  .#{$--class-prefix}main {
+  .#{$--prefix}main {
     flex: 1;
     margin-left: $--gap-lager;
   }
-  .#{$--class-prefix}aside {
+  .#{$--prefix}aside {
     width: 186px;
     .aside-item {
       margin-bottom: $--gap;
       h2 {
         font-weight: normal;
         @include font-14px();
-        @include resetMP();
-        color: $--text-placeholder;
+        @include reset();
+        color: $--color-gray-light;
         .iconfont {
           @include font-16px();
-          margin-right: 5px;
+          margin-right: $--gap-small;
         }
         small {
           font-size: $--font-small;
-          color: $--text-thin;
+          color: $--color-gray-light-1;
         }
       }
       .side-nav-list {
         ul {
-          @include resetMP();
+          @include reset();
           padding: 10px 0;
           li {
-            padding: 5px 0;
-            a {
-              @include hoverLine();
-              @include font-14px();
-              display: flex;
-            }
-            strong {
-              font-weight: normal;
-            }
-            small {
-              color: $--text-placeholder;
-              flex: 1;
-              text-align: right;
+            padding: $--gap-small 0;
+            > a.first-level {
+              display: block;
+              border-bottom: $--border-bottom;
               @include font-12px();
+              color: $--color-gray;
+              padding: $--gap-small 0;
+            }
+            ul {
+              padding: $--gap-small 0 0;
+              li {
+                padding: 3px 0;
+                a {
+                  @include hoverLine();
+                  @include font-14px();
+                  display: flex;
+                }
+                strong {
+                  font-weight: normal;
+                }
+                small {
+                  color: $--color-gray-light;
+                  flex: 1;
+                  text-align: right;
+                  @include font-12px();
+                }
+              }
             }
           }
         }
@@ -191,27 +213,27 @@ a {
           white-space: nowrap;
           @include font-14px();
           @include hoverLine();
-          margin-bottom: 5px;
-          margin-right: 5px;
+          margin-bottom: $--gap-small;
+          margin-right: $--gap-small;
         }
       }
     }
     .gongzonghao {
       img {
         width: 100%;
-        border-radius: 4px;
+        border-radius: $--border-radius-4px;
       }
     }
   }
 }
 
-.#{$--class-prefix}post-list {
+.#{$--prefix}post-list {
   .item {
-    cursor: pointer;
     @include blockLine();
+    cursor: pointer;
     padding: $--gap-lager;
     .title {
-      @include resetMP();
+      @include reset();
       position: relative;
       padding-left: $--gap;
       &:before {
@@ -233,33 +255,26 @@ a {
       }
       margin-bottom: $--gap;
     }
-    .cover {
-      width: 100%;
-      display: block;
-      border-radius: 4px;
-      margin-bottom: $--gap;
-      display: none;
-    }
     .desc {
       font-size: $--font-normal;
-      color: $--text-placeholder;
-      @include resetMP();
+      color: $--color-gray;
+      @include reset();
       margin-bottom: $--gap;
     }
     .info {
       ul {
         display: flex;
-        @include resetMP();
+        @include reset();
         li {
           padding-right: $--gap;
           font-size: $--font-small;
-          color: $--text-secondary;
+          color: $--color-gray;
           .iconfont {
             margin-right: 6px;
-            color: $--text-placeholder;
+            color: $--color-gray-light-1;
           }
           a {
-            @include textLink(12, $--text-secondary);
+            @include link(12, $--color-gray);
             @include hoverLine();
             margin-right: $--gap-small;
           }
@@ -269,8 +284,7 @@ a {
   }
 }
 
-// 水波纹效果
-.#{$--class-prefix}ripple {
+.#{$--prefix}ripple {
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
@@ -283,7 +297,7 @@ a {
     top: 0;
     left: 0;
     pointer-events: none;
-    background-image: radial-gradient(circle, #ffffff 10%, transparent 10.01%);
+    background-image: radial-gradient(circle, $--color-white 10%, transparent 10.01%);
     background-repeat: no-repeat;
     background-position: 50%;
     transform: scale(10, 10);
@@ -297,24 +311,18 @@ a {
   }
 }
 
-// 按钮
-.#{$--class-prefix}button-primary {
+.#{$--prefix}button-primary {
+  @include button(16)
+}
+.#{$--prefix}button-block {
   width: 100%;
-  border: 0;
-  color: #ffffff;
-  border-radius: 4px;
-  background-color: $--color-primary;
-  padding: 10px;
-  cursor: pointer;
-  outline: none;
-  @include font-14px();
 }
 
 // 分页
-.#{$--class-prefix}pagination {
+.#{$--prefix}pagination {
   padding: $--gap;
   ul {
-    @include resetMP();
+    @include reset();
     display: flex;
     justify-content: center;
     align-items: center;
@@ -327,28 +335,28 @@ a {
     .num a, .prev span, .prev a, .current span, .next span, .next a, .ellipsis span {
       display: block;
       padding: 10px $--gap;
-      border: 1px $--border-regular solid;
-      border-radius: 4px;
-      transition: $--color-transition;
+      border: $--border-bottom;
+      border-radius: $--border-radius-4px;
+      transition: $--transition;
     }
     .current span {
       background-color: $--color-primary;
       border-color: $--color-primary;
-      color: #ffffff;
+      color: $--color-white;
     }
   }
 }
 
 // 面包屑
-.#{$--class-prefix}breadcrumb {
+.#{$--prefix}breadcrumb {
   @include blockLine();
   padding: $--gap $--gap-lager;
   ul {
-    @include resetMP();
+    @include reset();
     display: flex;
     align-items: center;
     .separate {
-      color: $--text-placeholder;
+      color: $--color-gray-light;
       padding: 0 $--gap-small;
       i {
         font-size: $--font-normal;
@@ -360,10 +368,10 @@ a {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      color: $--text-placeholder;
+      color: $--color-gray-light;
       font-size: $--font-small;
       h1 {
-        @include resetMP();
+        @include reset();
         font-size: $--font-small;
         display: inline-block;
         color: $--color-primary;

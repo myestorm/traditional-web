@@ -1,6 +1,5 @@
-.#{$--class-prefix}markdown-style {
+.#{$--prefix}markdown-style {
   @include font-16px();
-  color: $--text-black;
 
   p {
     letter-spacing: 1px !important;
@@ -13,17 +12,15 @@
   }
 
   blockquote {
-    border-left: 4px solid $--border-regular;
+    border-left: 4px solid $--color-gray;
     padding: 0 15px !important;
     margin: 0px;
-    color: $--text-secondary;
+    color: $--color-gray-dark;
     @include font-14px();
   }
 
   strong {
     font-weight: bold;
-    /*border-bottom: 2px solid #BADA55;*/
-    /*color: #898989;*/
   }
 
   h1,
@@ -42,12 +39,10 @@
   }
 
   h1 {
-    /*border-bottom: 8px solid #71BA51 !important;*/
     font-size: 20px !important;
   }
 
   h2 {
-    /*border-bottom: 5px solid #71BA51 !important;*/
     font-size: 18px !important;
   }
 

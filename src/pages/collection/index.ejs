@@ -8,13 +8,13 @@
       <%- include('../../components/header.ejs', {
         navCurrent: 1
       }) %>
-      <div class="totonoo--collection-box">
-        <aside class="totonoo--collection-catalog">
-          <h2>目录</h2>
+      <div class="collection-box" id="totonoo--box">
+        <div class="collection-list" id="totonoo--list">
+          <h2>标签学习 目录</h2>
           <nav class="catalog-box">
             <ul>
               <li><a href="#">html标签学习</a></li>
-              <li><a href="#">css基本概念学习</a></li>
+              <li class="current"><a href="#">css基本概念学习</a></li>
               <li><a href="#">如何用css和html制作一个页面 - 布局</a></li>
               <li><a href="#">NODE搭建基础开发环境</a></li>
               <li><a href="#">如何使用Visual Studio Code和GIT</a></li>
@@ -25,11 +25,14 @@
               <li><a href="#">流行的前端框架</a></li>
             </ul>
           </nav>
-        </aside>
-        <div class="totonoo--collection-article">
-          <div class="flex">
-            <div class="totonoo--collection-article-main">
-              <article class="totonoo--markdown-style">
+          <div class="drag-bar" id="totonoo--bar">
+            <div class="bar"></div>
+          </div>
+        </div>
+        <div class="collection-main" id="totonoo--main">
+          <div class="collection-article-outer">
+            <div class="collection-article">
+              <article class="totonoo--markdown-style" id="totonoo--article">
                 <h1 id="node%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><a class="header-anchor" href="#node%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83">¶</a> NODE搭建基础开发环境</h1>
     <p>本来在这里不想引入node，但是没有办法，node在前端开发的过程中，已经是绕不过去的一个问题。用对应的脚手架工具可以帮助节省很多的开发成本。比如我们在前面几节里面，修改了页面内容，必须要在浏览器手动刷新才可以看到修改后的效果。如果我们使用 <code>Browsersync</code> 之后，就无需手动刷新，修改自动同步。</p>
     <h2 id="window%E7%B3%BB%E5%88%97%E5%AE%89%E8%A3%85node"><a class="header-anchor" href="#window%E7%B3%BB%E5%88%97%E5%AE%89%E8%A3%85node">¶</a> window系列安装NODE</h2>
@@ -95,23 +98,22 @@
     更神奇的是，此时你打开 <code>index.html</code> 修改内容并保存，不用刷新修改会自动同步。
     cmd窗口中，有一个“External”，如果手机和电脑在同一个wifi下，用手机访问这个地址，是同步的，更改也是同步的。</p>
     <p>不要指望这就学会了node，这只是用node来帮助你学习得更流畅一些。</p>
-
               </article>
             </div>
-            <div class="totonoo--collection-nav">
-              <ul>
-                <li class="h2 current"><a href="#">用手机访问这个地址</a></li>
-                <li class="h3"><a href="#">已经是绕不过去的</a></li>
-                <li class="h3"><a href="#">修改了页面内容</a></li>
-                <li class="h2"><a href="#">window系列安装NODE</a></li>
-                <li class="h3"><a href="#">实现一个简单的前端开发环境</a></li>
-                <li class="h4"><a href="#">看到修改后的效果</a></li>
-                <li class="h5"><a href="#">在根目录下新建一个index</a></li>
-                <li class="h6"><a href="#">国内使用淘宝源会比较快</a></li>
-              </ul>
-            </div>
+            <%- include('../../components/footer.ejs') %>
           </div>
-          <%- include('../../components/footer.ejs') %>
+        </div>
+        <div class="collection-nav" id="totonoo--nav">
+          <ul>
+            <li class="h2 current" data-index="0"><a href="#">用手机访问这个地址</a></li>
+            <li class="h3" data-index="1"><a href="#">已经是绕不过去的</a></li>
+            <li class="h3" data-index="2"><a href="#">修改了页面内容</a></li>
+            <li class="h2" data-index="3"><a href="#">window系列安装NODE</a></li>
+            <li class="h3" data-index="4"><a href="#">实现一个简单的前端开发环境</a></li>
+            <li class="h4" data-index="5"><a href="#">看到修改后的效果</a></li>
+            <li class="h5" data-index="6"><a href="#">在根目录下新建一个index</a></li>
+            <li class="h6" data-index="7"><a href="#">国内使用淘宝源会比较快</a></li>
+          </ul>
         </div>
       </div>
     </div>

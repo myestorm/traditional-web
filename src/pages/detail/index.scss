@@ -1,8 +1,8 @@
-.#{$--class-prefix}article {
+.#{$--prefix}article {
   @include blockLine();
   padding: $--gap-lager;
 }
-.#{$--class-prefix}article-title {
+.#{$--prefix}article-title {
   padding: 0 0 $--gap-lager;
   h1 {
     font-size: 24px;
@@ -11,17 +11,17 @@
   .info {
     ul {
       display: flex;
-      @include resetMP();
+      @include reset();
       li {
         padding-right: $--gap;
         font-size: $--font-normal;
-        color: $--text-secondary;
+        color: $--color-gray;
         .iconfont {
           margin-right: 6px;
-          color: $--text-placeholder;
+          color: $--color-gray-light;
         }
         a {
-          @include textLink(14, $--text-secondary);
+          @include link(14, $--color-gray);
           @include hoverLine();
           margin-right: $--gap-small;
         }
@@ -29,11 +29,11 @@
     }
   }
 }
-.#{$--class-prefix}article-related {
+.#{$--prefix}article-related {
   padding: $--gap-lager 0;
   ul {
     display: flex;
-    @include resetMP();
+    @include reset();
     li {
       width: 50%;
       &:last-child {
@@ -41,7 +41,7 @@
       }
     }
     a {
-      @include textLink(16, $--color-primary)
+      @include link(16, $--color-primary, $--color-contrast, $--color-contrast-dark)
     }
   }
 }

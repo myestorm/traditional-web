@@ -1,3 +1,10 @@
+@mixin reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: normal;
+  font-style: normal;
+}
 @mixin font-12px {
   font-size: $--font-small;
   line-height: 16px;
@@ -14,18 +21,15 @@
   font-size: $--font-x-large;
   line-height: 32px;
 }
+
+@mixin box-shadow-light {
+  box-shadow: $--box-shadow-light;
+}
 @mixin box-shadow {
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.06);
+  box-shadow: $--box-shadow;
 }
-@mixin box-shadow-hover {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,.08);
-}
-@mixin resetMP {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-@mixin textLink($size: 14, $color: $--color-link, $hover: $--color-hover, $active: $--color-active) {
+
+@mixin link($size: 14, $color: $--color-gray-dark, $hover: $--color-primary, $active: $--color-primary-dark) {
   @if $size == 12 {
     @include font-12px;
   }
@@ -39,7 +43,7 @@
     @include font-18px;
   }
   text-decoration: none;
-  transition: $--color-transition;
+  transition: $--transition;
   color: $color;
   &:hover {
     color: $hover;
@@ -48,7 +52,37 @@
     color: $active;
   }
 }
-// hover自动生成下划线动画
+
+@mixin button($size: 14, $width: auto, $color: $--color-white, $link: $--color-primary, $hover: $--color-primary-dark, $active: $--color-primary-dark) {
+  @if $size == 12 {
+    @include font-12px;
+  }
+  @if $size == 14 {
+    @include font-14px;
+  }
+  @if $size == 16 {
+    @include font-16px;
+  }
+  @if $size == 18 {
+    @include font-18px;
+  }
+  width: $width;
+  transition: $--transition;
+  color: $color;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  background-color: $link;
+  padding: 10px;
+  border-radius: $--border-radius-4px;
+  &:hover {
+    background-color: $hover;
+  }
+  &:active {
+    background-color: $active;
+  }
+}
+
 @mixin hoverLine ($height: 2px) {
   position: relative;
   &:before{
@@ -60,7 +94,7 @@
     width: 100%;
     background: $--color-primary;
     transform: scale(0);
-    transition: all 0.3s;
+    transition: $--transition;
     border-radius: $height;
   }
   &:hover:before{
@@ -69,12 +103,12 @@
 }
 
 @mixin blockLine {
-  border: 1px $--border-regular solid;
+  border: $--border;
   margin-bottom: $--gap-lager;
-  transition: box-shadow .35s ease;
-  border-radius: 4px;
-  background-color: #ffffff;
+  transition: $--transition-shadow;
+  border-radius: $--border-radius-4px;
+  background-color: $--color-white;
   &:hover {
-    @include box-shadow-hover();
+    @include box-shadow();
   }
 }
