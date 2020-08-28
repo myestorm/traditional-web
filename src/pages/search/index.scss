@@ -1,0 +1,14 @@
+.#{$--prefix}search-main {
+  width: 80%;
+  box-sizing: border-box;
+  padding: $--gap-lager;
+  margin: 0 auto;
+  h1 {
+    @include font-16px;
+    @include reset();
+    padding-bottom: $--gap;
+    strong {
+      color: $--color-primary;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.#{$--prefix}bookshelf {
+  padding: $--gap-lager;
+  .image-text {
+    padding-bottom: $--gap-lager;
+    ul {
+      @include reset();
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: $--gap-lager;
+      .item {
+        @include blockLine();
+        transition: $--transition;
+        margin-bottom: 0;
+        &:hover {
+          background-color: $--color-bg;
+        }
+        img {
+          width: 100%;
+          border-radius: $--border-radius-4px $--border-radius-4px 0 0;
+        }
+        p {
+          @include reset();
+          @include font-14px();
+          padding: $--gap;
+          color: $--color-gray;
+        }
+        h3 {
+          @include reset();
+          @include font-16px();
+          text-align: center;
+          padding: $--gap;
+          border-top: $--border;
+        }
+      }
+    }
+  }
+}

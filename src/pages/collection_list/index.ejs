@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- `\<\%= htmlWebpackPlugin.options.title \%\>` -%></title>
+  </head>
+  <body>
+    <div class="totonoo--layout">
+      <%- include('../../components/header.ejs', {
+        navCurrent: 1
+      }) %>
+      <div class="totonoo--bookshelf">
+        <div class="image-text">
+          <ul>
+            <%
+            for (let i= 0; i < 10; i++) {
+            %>
+            <li class="item">
+              <a href="#">
+                <img src="/images/covers/1.jpg" alt="基础教程">
+                <p>这里讲一下源码安装，其他方式可以自行搜索。
+                  去官网下载对应的安装包这里讲一下源码安装，其他方式可以自行搜索。
+                  去官网下载对应的安装包</p>
+                <h3>基础教程</h3>
+              </a>
+            </li>
+            <%
+            }
+            %>
+          </ul>
+        </div>
+        <%- include('../../components/pagination.ejs') %>
+      </div>
+      <%- include('../../components/footer.ejs') %>
+    </div>
+  </body>
+</html>

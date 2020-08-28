@@ -1,0 +1,56 @@
+.#{$--prefix}tags-main {
+  width: 100%;
+  box-sizing: border-box;
+  padding: $--gap-lager;
+  margin: 0 auto;
+  min-height: 80vh;
+  a {
+    display: inline-block;
+    white-space: nowrap;
+    padding: $--gap-small;
+    margin: $--gap-small;
+    background-color: rosybrown;
+    border-radius: 2px;
+    color: $--color-white;
+    transition: $--transition;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .bg-1 {
+    background-color: #f05b72;
+  }
+  .bg-2 {
+    background-color: #f47920;
+  }
+  .bg-3 {
+    background-color: #faa755;
+  }
+  .bg-4 {
+    background-color: #b2d235;
+  }
+  .bg-5 {
+    background-color: #4e72b8;
+  }
+  .bg-6 {
+    background-color: #ae6642;
+  }
+  .bg-7 {
+    background-color: #6950a1;
+  }
+  .bg-8 {
+    background-color: #006c54;
+  }
+  .bg-9 {
+    background-color: #dea32c;
+  }
+  .bg-10 {
+    background-color: #ea66a6;
+  }
+  .bg-11 {
+    background-color: #b69968;
+  }
+  .bg-12 {
+    background-color: #33a3dc;
+  }
+}

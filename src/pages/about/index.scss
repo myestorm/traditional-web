@@ -1,0 +1,44 @@
+.#{$--prefix}about-main {
+  width: 80%;
+  box-sizing: border-box;
+  padding: $--gap-lager;
+  padding-right: $--gap-lager * 2;
+}
+.#{$--prefix}about-nav {
+  width: 20%;
+  position: fixed;
+  box-sizing: border-box;
+  right: 0;
+  top: $--height-header;
+  width: 320px;
+  margin-left: $--gap-lager;
+  padding: $--gap-lager;
+  ul {
+    @include reset();
+    li {
+      border-left: 2px #e8e8e8 solid;
+      box-sizing: border-box;
+      padding: 2px 0;
+      transition: $--transition;
+      a {
+        @include font-12px();
+      }
+      &:hover {
+        background-color: $--color-bg-dark;
+      }
+    }
+    @for $i from 1 through 6 {
+      .h#{$i} {
+        a {
+          padding-left: ($--gap * ($i - 1));
+        }
+      }
+    }
+    .current {
+      border-left-color: $--color-primary;
+      a {
+        color: $--color-primary;
+      }
+    }
+  }
+}

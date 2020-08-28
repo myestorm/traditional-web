@@ -1,0 +1,90 @@
+$--radius: $--border-radius-6px * 3;
+.#{$--prefix}timeline {
+  padding: $--gap-lager * 2 $--gap-lager;
+  padding-left: 30%;
+  ul {
+    @include reset();
+    .item {
+      position: relative;
+      border-left: $--border-bottom;
+      border-left-width: 3px;
+      box-sizing: border-box;
+      padding: $--gap;
+      padding-left: 40px;
+      &:before {
+        width: $--radius;
+        height: $--radius;
+        border-radius: $--radius;
+        content: " ";
+        overflow: hidden;
+        box-sizing: border-box;
+        border: 2px $--color-primary solid;
+        background-color: $--color-white;
+        position: absolute;
+        left: - $--radius / 2 - 1;
+        top: 50%;
+        margin-top: - $--radius / 2;
+      }
+      small {
+        width: 200px;
+        position: absolute;
+        left: -200px;
+        top: 50%;
+        @include font-14px();
+        color: $--color-gray;
+        margin-top: -10px;
+      }
+    }
+    .content {
+      @include blockLine();
+      display: inline-block;
+      padding: $--gap;
+      margin: 0;
+    }
+    .first, .last {
+      position: relative;
+      &:before {
+        width: 3px;
+        height: 20px;
+        content: " ";
+        background-color: $--color-gray-light-2;
+        position: absolute;
+        left: 0;
+        top: -20px;
+        z-index: 2;
+        display: block;
+        border-radius: 3px;
+      }
+    }
+    .last {
+      transform: scaleY(-1);
+    }
+    .arrow {
+      position: absolute;
+      z-index: 1;
+      &:before {
+        border: 20px solid transparent;
+        border-bottom: 20px solid $--color-bg;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: -40px;
+        left: -18px;
+        content: ' ';
+        z-index: 2;
+      }
+      
+      &:after {
+        border: 20px solid transparent;
+        border-bottom: 20px solid $--color-gray-light-2;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: -44px;
+        left: -18px;
+        content: " ";
+        z-index: 1;
+      }
+    }
+  }
+}
