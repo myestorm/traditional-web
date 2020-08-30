@@ -1,5 +1,6 @@
 const { series, parallel, src, dest, watch } = require('gulp')
 const generateData = require('./task/generateData')
+const generateHtml = require('./task/generateHtml')
 
 // gulp plugins
 const ejs = require('gulp-ejs')
@@ -228,8 +229,40 @@ const serve = () => {
   watch(['./src/**/*.*', '!./src/pages/**/*.ejs', '!./src/components/**/*.ejs'], parallel(copyAssets, build))
 }
 
+/**
+ * browser-sync 启用http服务
+ */
+const serveOnline = () => {
+  /**
+   * 配置接口代理
+   */
+  const middleware = []
+  Object.keys(proxys).forEach(key => {
+    middleware.push(createProxyMiddleware(key, proxys[key]))
+  })
+  browserSync.init({
+    ui: false,
+    server: {
+      baseDir: path.resolve(__dirname, 'www'),
+      index: 'index.html',
+      middleware: middleware
+    },
+    port: port,
+    open: false,
+    notify: false
+  })
+  // 监听ejs文件的修改
+  watch(['./www/**/*.*'], () => {
+    return src('./www/**/*.*')
+      .pipe(reload({ stream: true })) // 刷新浏览器
+  })
+}
+
 // 文档数据
 exports.generateData = generateData
+exports.generateHtml = generateHtml
+
+exports.serveOnline = serveOnline
 
 exports.serve = series(
   delTemp,

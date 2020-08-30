@@ -1,0 +1,16 @@
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <meta name="keywords" content="<%= keywords.join(',') %>"/>
+  <meta name="description" content="<%= desc %>">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <%
+  const _styles = styles || []
+  styles.forEach(item => {
+  %>
+  <link href="<%= item %>" rel="stylesheet">
+  <%
+  })
+  %>
+  <link rel="icon" href="/favicon.ico">
+</head>

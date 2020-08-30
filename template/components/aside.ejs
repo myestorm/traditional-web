@@ -1,0 +1,41 @@
+<aside class="totonoo--aside">
+  <div class="side-nav aside-item">
+    <h2><i class="iconfont icon-file-open"></i>文章分类 <small>Category</small></h2>
+    <nav class="side-nav-list">
+      <ul>
+        <%
+        const _categories = categories || {}
+        Object.keys(_categories).forEach(key => {
+        const item = _categories[key]
+        %>
+        <li>
+          <a href="javascript:;" class="first-level"><%= item.title %></a>
+          <ul>
+            <%
+            const _children = item.children || {}
+            Object.keys(_children).forEach(subKey => {
+            const sub = _children[subKey]
+            %>
+            <li><a href="<%= (host + sub.path) %>"><strong><%= sub.title %></strong> <small><%= sub.count %></small></a></li>
+            <% }) %>
+          </ul>
+        </li>
+        <% }) %>
+      </ul>
+    </nav>
+  </div>
+  <div class="side-nav aside-item">
+    <h2><i class="iconfont icon-discount"></i>文章标签 <small>Tags</small></h2>
+    <div class="side-tag-list">
+      <% 
+      const _tags = tags || []
+      _tags.forEach(item => { 
+      %>
+      <a href="/tags.html?tag=<%= item.title %>"><%= item.title %></a>
+      <% }) %>
+    </div>
+  </div>
+  <div class="gongzonghao">
+    <img src="/assets/images/covers/qrcode.png">
+  </div>
+</aside>
