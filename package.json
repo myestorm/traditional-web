@@ -6,8 +6,8 @@
   "scripts": {
     "serve": "set NODE_ENV=development && gulp serve",
     "build": "set NODE_ENV=production && gulp",
-    "lint": "eslint --ext .js --ext .jsx --ext .vue src/",
-    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/",
+    "lint": "eslint --ext .js --ext .jsx --ext src/",
+    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +18,7 @@
     "gulp",
     "webpack",
     "ejs",
-    "browersync",
-    "SSG"
+    "browersync"
   ],
   "author": "wenxue.cwx",
   "license": "MIT",
@@ -43,19 +42,13 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^6.0.0",
-    "front-matter": "^4.0.2",
     "gulp": "^4.0.2",
     "gulp-ejs": "^5.1.0",
-    "gulp-htmlmin": "^5.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-wrap": "^0.15.0",
     "html-webpack-plugin": "^4.3.0",
     "http-proxy-middleware": "^1.0.5",
-    "markdown-it": "^11.0.0",
-    "markdown-it-anchor": "^5.3.0",
     "mini-css-extract-plugin": "^0.10.0",
-    "moment": "^2.27.0",
-    "pinyin": "^2.9.1",
     "prismjs": "^1.21.0",
     "readable-stream": "^3.6.0",
     "sass": "^1.26.10",

@@ -1,12 +1,11 @@
 const { series, parallel, src, dest, watch } = require('gulp')
-const generateData = require('./task/generateData')
-const generateHtml = require('./task/generateHtml')
 
 // gulp plugins
 const ejs = require('gulp-ejs')
-const rename = require('gulp-rename')
 const del = require('del')
+const rename = require('gulp-rename')
 const webpack = require('webpack-stream')
+const Vinyl = require('vinyl')
 
 // webpack plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -15,6 +14,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // other package
 const path = require('path')
 const glob = require('glob')
+const { Readable } = require('readable-stream')
 const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
 const { createProxyMiddleware } = require('http-proxy-middleware')
@@ -42,17 +42,47 @@ const delTemp = (cb) => {
 const ejsToHtml = () => {
   return src('./src/pages/**/*.ejs')
     .pipe(ejs({
-      current: '1'
+      current: 0
     }))
     .pipe(rename({ extname: '.html' }))
     .pipe(dest(`${tmpDir}/`))
+}
+
+/**
+ * 提取模板中的css和js文件
+ */
+const assetsConfig = {}
+class GenerateAssetsConfig {
+  apply (compiler) {
+    compiler.hooks.compilation.tap('GenerateAssetsConfig', (compilation) => {
+      HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.tapAsync(
+        'GenerateAssetsConfig',
+        (data, cb) => {
+          const outputName = data.outputName
+          const assetTags = data.assetTags
+          const item = {
+            scripts: [],
+            styles: []
+          }
+          assetTags.scripts.forEach(sub => {
+            item.scripts.push(sub.attributes.src)
+          })
+          assetTags.styles.forEach(sub => {
+            item.styles.push(sub.attributes.href)
+          })
+          assetsConfig[outputName] = item
+          cb(null, data)
+        }
+      )
+    })
+  }
 }
 
 const getConfigFiles = () => {
   const folder = './src/pages/**/*.json'
   const files = glob.sync(folder)
   const entries = {} // webpack 入口文件
-  const htmlTemplate = [] // webpack HtmlWebpackPlugin
+  const htmlTemplate = [new GenerateAssetsConfig()] // webpack HtmlWebpackPlugin
   files.forEach(filePath => {
     const params = path.parse(filePath)
     let file = {}
@@ -71,7 +101,7 @@ const getConfigFiles = () => {
       inject: true,
       chunks: [file.filename],
       minify: false,
-      favicon: path.resolve(__dirname, 'src/favicon.ico')
+      favicon: path.resolve(__dirname, 'public/favicon.ico')
     }))
   })
   return {
@@ -106,7 +136,7 @@ const build = () => {
         chunkIds: 'natural'
       },
       resolve: {
-        extensions: ['.js', '.jsx', '.ejs', '.json', '.css', '.scss', '.vue'],
+        extensions: ['.js', '.jsx', '.ejs', '.json', '.css', '.scss'],
         modules: [
           path.resolve('./'),
           path.resolve('./node_modules')
@@ -196,9 +226,14 @@ const build = () => {
     .pipe(reload({ stream: true })) // 刷新浏览器
 }
 
-const copyAssets = () => {
-  return src('./src/assets/images/covers/**/*.*')
-    .pipe(dest(`${dist}/images/covers/`))
+const copyPublic = () => {
+  return src(['./public/**/*.*', '!./public/favicon.ico'])
+    .pipe(dest(`${dist}/resource/`))
+}
+
+const copyFavicon = () => {
+  return src(['./public/favicon.ico'])
+    .pipe(dest(`${dist}/`))
 }
 
 /**
@@ -226,55 +261,46 @@ const serve = () => {
   // 监听ejs文件的修改
   watch(['./src/pages/**/*.ejs', './src/components/**/*.ejs'], series(ejsToHtml, build))
   // 监听文件资源的修改
-  watch(['./src/**/*.*', '!./src/pages/**/*.ejs', '!./src/components/**/*.ejs'], parallel(copyAssets, build))
+  watch(['./src/**/*.*', '!./src/pages/**/*.ejs', '!./src/components/**/*.ejs'], parallel(copyPublic, copyFavicon, build))
 }
 
 /**
- * browser-sync 启用http服务
+ * 添加文件
+ * @param {String} filename 文件名
+ * @param {String} string 内容
  */
-const serveOnline = () => {
-  /**
-   * 配置接口代理
-   */
-  const middleware = []
-  Object.keys(proxys).forEach(key => {
-    middleware.push(createProxyMiddleware(key, proxys[key]))
+const addVinylFile = (filename, string) => {
+  const src = Readable({
+    objectMode: true
   })
-  browserSync.init({
-    ui: false,
-    server: {
-      baseDir: path.resolve(__dirname, 'www'),
-      index: 'index.html',
-      middleware: middleware
-    },
-    port: port,
-    open: false,
-    notify: false
-  })
-  // 监听ejs文件的修改
-  watch(['./www/**/*.*'], () => {
-    return src('./www/**/*.*')
-      .pipe(reload({ stream: true })) // 刷新浏览器
-  })
+  src._read = function () {
+    this.push(new Vinyl({
+      path: filename,
+      contents: Buffer.from(string)
+    }))
+    this.push(null)
+  }
+  return src
 }
-
-// 文档数据
-exports.generateData = generateData
-exports.generateHtml = generateHtml
-
-exports.serveOnline = serveOnline
+const generateConfig = () => {
+  return addVinylFile('config.json', JSON.stringify(assetsConfig, null, 4))
+    .pipe(dest(`./${dist}`))
+}
 
 exports.serve = series(
   delTemp,
   parallel(
-    copyAssets,
+    copyPublic,
+    copyFavicon,
     series(ejsToHtml, build, serve)
   )
 )
 exports.default = series(
   delTemp,
   parallel(
-    copyAssets,
+    copyPublic,
+    copyFavicon,
     series(ejsToHtml, build)
-  )
+  ),
+  generateConfig
 )

@@ -4,7 +4,7 @@ module.exports = {
   port: 8080,
   proxys: {
     '/api': {
-      target: 'http://www.baidu.com',
+      target: 'http://www.totonoo.com',
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''
