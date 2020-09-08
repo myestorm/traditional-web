@@ -384,3 +384,29 @@ a {
     }
   }
 }
+
+.#{$--prefix}tabs {
+  .tabs-title {
+    margin-bottom: $--gap;
+    ul {
+      @include reset();
+      display: flex;
+      padding: 0 $--gap-small;
+      li {
+        border-radius: $--border-radius-2px;
+        margin-right: $--gap;
+        a {
+          display: block;
+          padding: 5px $--gap;
+          transition: $--transition;
+        }
+      }
+      .current {
+        border-bottom: 2px $--color-primary solid;
+        a {
+          color: $--color-primary;
+        }
+      }
+    }
+  }
+}

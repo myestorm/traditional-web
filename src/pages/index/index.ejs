@@ -11,10 +11,20 @@
       <div class="totonoo--main-box">
         <%- include('../../components/aside.ejs') %>
         <main class="totonoo--main">
-          <div class="totonoo--post-list">
-            <%- include('../../components/articleList.ejs') %>
+          <div class="totonoo--tabs" id="totonoo--tabs">
+            <div class="tabs-title">
+              <ul>
+                <li class="current" data-index="0"><a href="javascript:;">最新</a></li>
+                <li data-index="1"><a href="javascript:;">推荐</a></li>
+              </ul>
+            </div>
+            <div class="totonoo--post-list tabs-content">
+              <%- include('../../components/articleList.ejs') %>
+            </div>
+            <div class="totonoo--post-list tabs-content" style="display: none;">
+              <%- include('../../components/articleList.ejs') %>
+            </div>
           </div>
-          <button class="totonoo--button-primary totonoo--button-block totonoo--ripple">载入更多</button>
         </main>
       </div>
       <%- include('../../components/footer.ejs') %>
