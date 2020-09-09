@@ -171,40 +171,76 @@ a {
         }
       }
       .side-nav-list {
-        ul {
+        > ul {
           @include reset();
-          padding: 10px 0;
-          li {
-            padding: $--gap-small 0;
-            > a.first-level {
-              display: block;
-              border-bottom: $--border-bottom;
-              @include font-12px();
-              color: $--color-gray;
-              padding: $--gap-small 0;
+          > li {
+            margin-bottom: $--gap;
+          }
+          ul {
+            @include reset();
+          }
+          a {
+            display: block;
+            @include font-14px();
+            line-height: 32px;
+            border-bottom: $--border-bottom;
+            @include hoverLine();
+            &:before { 
+              bottom: -2px;
             }
-            ul {
-              padding: $--gap-small 0 0;
-              li {
-                padding: 3px 0;
-                a {
-                  @include hoverLine();
-                  @include font-14px();
-                  display: flex;
-                }
-                strong {
-                  font-weight: normal;
-                }
-                small {
-                  color: $--color-gray-light;
-                  flex: 1;
-                  text-align: right;
-                  @include font-12px();
-                }
-              }
+          }
+          .first-level {
+            @include font-12px();
+            color: $--color-gray;
+            padding: $--gap-small 0;
+            padding-left: 3px;
+          }
+          @for $i from 1 through 10 {
+            .level-#{$i} {
+              padding-left: $i * $--gap;
             }
           }
         }
+        // ul {
+        //   @include reset();
+        //   padding: 10px 0;
+        //   li {
+        //     padding: $--gap-small 0;
+        //     > a.first-level {
+        //       display: block;
+        //       border-bottom: $--border-bottom;
+        //       @include font-12px();
+        //       color: $--color-gray;
+        //       padding: $--gap-small 0;
+        //     }
+        //     @for $i from 2 through 10 {
+        //       .level-#{$i} {
+        //         padding-left: ($i - 1) * $--gap;
+        //       }
+        //     }
+        //     ul {
+        //       padding: $--gap-small 0 0;
+        //       border-bottom: $--border-bottom;
+        //       li {
+        //         padding: 3px 0;
+        //         a {
+        //           @include hoverLine();
+        //           @include font-14px();
+        //           display: flex;
+        //         }
+        //         strong {
+        //           font-weight: normal;
+        //         }
+        //         small {
+        //           color: $--color-gray-light;
+        //           flex: 1;
+        //           text-align: right;
+        //           @include font-12px();
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
       }
       .side-tag-list {
         padding: 10px 0;

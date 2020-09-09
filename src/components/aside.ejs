@@ -1,61 +1,116 @@
 <%
-const categories = [
-  {
-    title: '基本概念',
-    count: '1'
-  },
-  {
-    title: 'Vue基础教程',
-    count: '10'
-  },
-  {
-    title: 'Nodejs',
-    count: '23'
-  },
-  {
-    title: 'Express',
-    count: '17'
-  }
-]
-const tags = [
-  '前端',
-  '学习',
-  'javascript',
-  'css',
-  '标签',
-  '注释',
-  '设计工具',
-  'node',
-  'nodejs',
-  'CSS常用选择器'
-]
+const aside = {
+  categories: [
+    {
+      title: '工作台',
+      children: [
+        {
+          title: '文档',
+          children: [
+            {
+              title: '学习笔记'
+            },
+            {
+              title: '博客专栏'
+            },
+            {
+              title: '旅行攻略'
+            }
+          ]
+        },
+        {
+          title: '知识库',
+          children: [
+            {
+              title: '散文'
+            },
+            {
+              title: '杂文'
+            },
+            {
+              title: '小说'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      title: '实践',
+      children: [
+        {
+          title: '空间',
+          children: []
+        },
+        {
+          title: '项目',
+          children: []
+        }
+      ]
+    }
+  ],
+tags: [
+    {
+      title: '教授',
+      count: 10
+    }, {
+      title: '简介',
+      count: 11
+    }, {
+      title: '书摘',
+      count: 14
+    }, {
+      title: '经验',
+      count: 14
+    }, {
+      title: '时间',
+      count: 14
+    }, {
+      title: '北野武',
+      count: 14
+    }, {
+      title: '笑与泪',
+      count: 14
+    }
+  ]
+}
 %>
 <aside class="totonoo--aside">
   <div class="side-nav aside-item">
     <h2><i class="iconfont icon-file-open"></i>文章分类 <small>Category</small></h2>
     <nav class="side-nav-list">
-      <ul>
-        <% categories.forEach(item => { %>
-        <li>
-          <a href="javascript:;" class="first-level"><%= item.title %></a>
-          <ul>
-            <li><a href="/categories.html"><strong>子分类1</strong> <small><%= item.count %></small></a></li>
-            <li><a href="/categories.html"><strong></strong>子分类2</strong> <small><%= item.count %></small></a></li>
-          </ul>
-        </li>
-        <% }) %>
-      </ul>
+      <%
+      const _categories = aside.categories || []
+      const html = []
+      const forEachTree = (data = [], level = 0) => {
+        html.push('<ul>')
+        data.forEach(item => {
+          html.push(`<li><a href="categories.html" class="${level == 0 ? 'first-level' : ''} level-${level}">${item.title}</a>`)
+          if (item.children && item.children.length > 0){
+            forEachTree(item.children, (level + 1))
+          }
+          html.push('</li>')
+        })
+        html.push('</ul>')
+      }
+      forEachTree(_categories, 0)
+      %>
+      <%- html.join('') %>
     </nav>
   </div>
   <div class="side-nav aside-item">
     <h2><i class="iconfont icon-discount"></i>文章标签 <small>Tags</small></h2>
     <div class="side-tag-list">
-      <% tags.forEach(item => { %>
-      <a href="/tags.html"><%= item %></a>
-      <% }) %>
+      <% 
+      const _tags = aside.tags || []
+      const maxLen = _tags.length > 20 ? 20 : _tags.length
+      for (let i = 0; i < maxLen; i++) {
+        const item = _tags[i]
+      %>
+      <a href="tags.html"><%= item.title %></a>
+      <% } %>
     </div>
   </div>
   <div class="gongzonghao">
-    <img src="./images/covers/qrcode.png">
+    <img src="./resource/images/qrcode.png">
   </div>
 </aside>
