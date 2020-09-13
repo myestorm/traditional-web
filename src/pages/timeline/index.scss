@@ -34,6 +34,11 @@ $--radius: $--border-radius-6px * 3;
         color: $--color-gray;
         margin-top: -10px;
       }
+      img {
+        display: block;
+        margin-top: $--gap;
+        border-radius: 4px;
+      }
     }
     .content {
       @include blockLine();

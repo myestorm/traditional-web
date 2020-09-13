@@ -232,7 +232,7 @@ const copyPublic = () => {
 }
 
 const copyFavicon = () => {
-  return src(['./public/favicon.ico'])
+  return src(['./public/favicon.ico', './src/pages/search/all.json'])
     .pipe(dest(`${dist}/`))
 }
 
