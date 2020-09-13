@@ -8,10 +8,10 @@
   <%- include('topNav.ejs', {
     navCurrent
   })%>
-  <div class="totonoo--top-search" onclick="window.location.href = 'search.html'">
-    <form>
-      <input type="text" placeholder="试试搜索功能">
-      <i class="iconfont icon-search"></i>
+  <div class="totonoo--top-search">
+    <form method="GET" action="/search.html">
+      <input type="text" name="keyword" placeholder="试试搜索功能" id="top-search-input">
+      <button type="submit"><i class="iconfont icon-search"></i></button>
     </form>
   </div>
 </header>

@@ -11,4 +11,27 @@
       color: $--color-primary;
     }
   }
+  .high-light {
+    font-style: normal;
+    color: $--color-primary;
+  }
+}
+
+.#{$--prefix}search-empty {
+  @include blockLine();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $--gap-lager;
+  height: 30vh;
+  strong {
+    color: $--color-primary;
+    padding: 0 $--gap-small;
+    &::before {
+      content: "“";
+    }
+    &::after {
+      content: "”";
+    }
+  }
 }

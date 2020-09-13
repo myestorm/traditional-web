@@ -3,7 +3,7 @@
   <head>
     <title><%- `\<\%= htmlWebpackPlugin.options.title \%\>` -%></title>
   </head>
-  <body>
+  <body id="totonoo--body">
     <div class="totonoo--layout">
       <%- include('../../components/header.ejs', {
         navCurrent: 1
@@ -11,7 +11,7 @@
       <div class="totonoo--main-box">
         <%- include('../../components/aside.ejs') %>
         <main class="totonoo--main">
-          <article class="totonoo--article">
+          <article class="totonoo--article totonoo--has-nav">
             <div class="totonoo--article-title">
               <h1>html标签学习</h1>
               <%
@@ -36,7 +36,8 @@
                 </ul>
               </div>
             </div>
-            <div class="totonoo--markdown-style">
+            <div class="totonoo--markdown-style" id="totonoo--article">
+              <h2>sssss</h2>
             <blockquote>
 <p>HTML的英文全称是 Hyper Text Marked Language，即超文本标记语言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编写的超文本文档称为HTML文档，它能独立于各种操作系统平台(如UNIX， Windows等)。使用HTML语言，将所需要表达的信息按某种规则写成HTML文件，通过专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所见到的网页。</p>
 </blockquote>
@@ -187,10 +188,23 @@
 &lt;/html&gt;
 </code></pre>
 <p>用2个面试题来结尾吧。</p>
+<h2>bbbb</h2>
 <ul>
 <li>~~ 怎么判断一个网页使用的html的版本？这个html5刚出来的时候面试官很喜欢问，答案就是根据第一行的申明<code>&lt;!DOCTYPE html&gt;</code>来判断，现在基本应该没有人问了。 ~~</li>
 <li>怎么理解html语义化标签？就是尽量搞懂每个标签代表的意思，表达内容和标签能基本匹配就行。这个其实也不重要，但是有人会问。</li>
 </ul>
+            </div>
+            <div class="article-nav" id="totonoo--nav">
+              <ul>
+                <li class="h2 current" data-index="0"><a href="#">用手机访问这个地址</a></li>
+                <li class="h3" data-index="1"><a href="#">已经是绕不过去的</a></li>
+                <li class="h3" data-index="2"><a href="#">修改了页面内容</a></li>
+                <li class="h2" data-index="3"><a href="#">window系列安装NODE</a></li>
+                <li class="h3" data-index="4"><a href="#">实现一个简单的前端开发环境</a></li>
+                <li class="h4" data-index="5"><a href="#">看到修改后的效果</a></li>
+                <li class="h5" data-index="6"><a href="#">在根目录下新建一个index</a></li>
+                <li class="h6" data-index="7"><a href="#">国内使用淘宝源会比较快</a></li>
+              </ul>
             </div>
             <div class="totonoo--article-related">
               <ul>

@@ -7,14 +7,29 @@
   a {
     display: inline-block;
     white-space: nowrap;
-    padding: $--gap-small;
+    padding: $--gap-small $--gap $--gap-small $--gap * 1.5;
     margin: $--gap-small;
     background-color: rosybrown;
     border-radius: 2px;
     color: $--color-white;
     transition: $--transition;
+    position: relative;
+    &::before {
+      width: 4px;
+      height: 4px;
+      border-radius: 100%;
+      display: block;
+      background: $--color-white;
+      position: absolute;
+      left: $--gap-small * 2;
+      top: 50%;
+      margin-top: -1px;
+      content: " ";
+      overflow: hidden;
+    }
     &:hover {
       opacity: 0.8;
+      top: -2px;
     }
   }
   .bg-1 {
