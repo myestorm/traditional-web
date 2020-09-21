@@ -4,6 +4,7 @@ const { series, parallel, src, dest, watch } = require('gulp')
 const ejs = require('gulp-ejs')
 const del = require('del')
 const rename = require('gulp-rename')
+const changed = require('gulp-changed')
 const webpack = require('webpack-stream')
 const Vinyl = require('vinyl')
 
@@ -45,6 +46,7 @@ const ejsToHtml = () => {
       current: 0
     }))
     .pipe(rename({ extname: '.html' }))
+    .pipe(changed(tmpDir, { hasChanged: changed.compareContents }))
     .pipe(dest(`${tmpDir}/`))
 }
 
@@ -222,17 +224,20 @@ const build = () => {
         })
       ])
     }))
+    .pipe(changed(dist, { hasChanged: changed.compareContents }))
     .pipe(dest(`${dist}/`))
     .pipe(reload({ stream: true })) // 刷新浏览器
 }
 
 const copyPublic = () => {
   return src(['./public/**/*.*', '!./public/favicon.ico'])
+    .pipe(changed(`${dist}/resource/`, { hasChanged: changed.compareContents }))
     .pipe(dest(`${dist}/resource/`))
 }
 
 const copyFavicon = () => {
   return src(['./public/favicon.ico', './src/pages/search/all.json'])
+    .pipe(changed(dist, { hasChanged: changed.compareContents }))
     .pipe(dest(`${dist}/`))
 }
 
