@@ -4,55 +4,159 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
   font-family: $--font-family;
-  background-color: $--color-bg;
-  color: $--color-gray-dark;
+  background-color: $--bg-color;
+  color: $--color-gray;
   textarea, pre, code {
     font-family: $--font-family;
   }
 }
 
+// 滚动条样式
+$--srcollbar-radius: 6px;
+$--srcollbar-bg: #eeeeee;
 ::-webkit-scrollbar {
-  width: $--border-radius-6px;
-  height: $--border-radius-6px;
-  background-color: #eeeeee;
+  width: $--srcollbar-radius;
+  height: $--srcollbar-radius;
+  background-color: $--srcollbar-bg;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #eeeeee;
+  background-color: $--srcollbar-bg;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: $--border-radius-6px;
+  border-radius: $--srcollbar-radius;
   background-color: $--color-gray;
 }
 
 a {
   text-decoration: none;
-  color: $--color-gray-dark;
+  color: $--color-gray;
   transition: $--transition;
   &:hover {
     color: $--color-primary;
   }
 }
 
+// 布局
 .#{$--prefix}layout {
-  padding-top: $--height-header;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
+.#{$--prefix}main-box {
+  flex: 1;
+  position: relative;
+  .main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+}
+
+// 边栏
+.#{$--prefix}aside {
+  width: 186px;
+  padding: $--gap-lager 0 $--gap-lager $--gap-lager;
+  .aside-item {
+    margin-bottom: $--gap;
+    h2 {
+      font-weight: normal;
+      @include font-14px();
+      @include reset();
+      color: $--color-gray-light;
+      .iconfont {
+        @include font-16px();
+        margin-right: $--gap-small;
+      }
+      small {
+        font-size: $--font-small;
+        color: $--color-placeholder;
+      }
+    }
+    .side-nav-list {
+      > ul {
+        @include reset();
+        > li {
+          margin-bottom: $--gap;
+        }
+        ul {
+          @include reset();
+        }
+        a {
+          display: block;
+          @include font-14px();
+          line-height: 32px;
+          border-bottom: $--border;
+          @include hoverLine();
+          &:before { 
+            bottom: -2px;
+          }
+        }
+        .first-level {
+          @include font-12px();
+          color: $--color-gray;
+          padding: $--gap-small 0;
+          padding-left: 3px;
+        }
+        @for $i from 1 through 10 {
+          .level-#{$i} {
+            padding-left: $i * $--gap;
+          }
+        }
+        .current {
+          color: $--color-primary;
+        }
+      }
+    }
+    .side-tag-list {
+      padding: 10px 0;
+      a {
+        display: inline-block;
+        white-space: nowrap;
+        @include font-14px();
+        @include hoverLine();
+        margin-bottom: $--gap-small;
+        margin-right: $--gap-small;
+      }
+    }
+  }
+  .gongzonghao {
+    img {
+      width: 100%;
+      border-radius: $--border-radius-normal;
+    }
+  }
+}
+
+// 主区域
+.#{$--prefix}main {
+  flex: 1;
+  margin-left: $--gap-lager * 0.5;
+  padding: $--gap-lager $--gap-lager 0 $--gap-lager;
+}
+
+// 头部
 .#{$--prefix}top-header {
-  @include box-shadow-light();
-  width: 100%;
+  position: relative;
+  z-index: 2;
   height: $--height-header;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 10;
   background-color: $--color-white;
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding-right: $--gap;
+  padding: 0 $--gap;
+  @include box-shadow-light();
   h1 {
     @include reset();
     font-size: 28px;
@@ -65,8 +169,8 @@ a {
     display: block;
     display: flex;
     align-items: center;
-    padding: 0 $--gap;
-    color: $--color-gray-dark;
+    padding: 0 $--gap 0 0;
+    color: $--color-gray;
     &:hover {
       color: $--color-primary;
     }
@@ -79,7 +183,7 @@ a {
     display: block;
     margin-right: $--gap-small;
   }
-  .#{$--prefix}top-nav {
+  .top-nav {
     flex: 1;
     ul {
       @include reset();
@@ -93,10 +197,10 @@ a {
           padding: 0 $--gap;
           font-size: $--font-large;
           line-height: $--height-header;
-          color: $--color-black-light;
+          color: $--color-gray;
           transition: $--transition;
           &:hover {
-            background-color: $--color-bg-dark;
+            background-color: $--bg-dark;
             color: $--color-primary;
           }
         }
@@ -108,136 +212,55 @@ a {
       }
     }
   }
-}
-
-.#{$--prefix}top-search {
-  position: relative;
-  input {
-    width: 180px;
-    height: $--border-radius-32px;
-    border: $--border;
-    border-radius: $--border-radius-32px;
-    outline: none;
-    padding: 0 $--gap;
-    transition: $--transition;
-    &:focus {
-      @include box-shadow();
-      border-color: $--color-primary;
+  .top-search {
+    position: relative;
+    input {
+      width: 180px;
+      height: 32px;
+      border: $--border;
+      border-radius: 32px;
+      outline: none;
+      padding: 0 $--gap;
+      transition: $--transition;
+      &:focus {
+        @include box-shadow();
+        border-color: $--color-primary;
+        background: none;
+      }
+      &::placeholder {
+        color: $--color-placeholder;
+      }
     }
-    &::placeholder {
-      color: $--color-gray;
+    button {
+      border: 0;
+      background: none;
+      cursor: pointer;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      right: 10px;
+      top: 50%;
+      margin-top: -8px;
+      color: $--color-primary;
+      outline: none;
     }
   }
-  button {
-    border: 0;
-    background: none;
-    cursor: pointer;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    right: 10px;
-    top: 50%;
-    margin-top: -8px;
-    color: $--color-primary;
-    outline: none;
-  }
 }
 
-.#{$--prefix}page-footer {
+// 尾巴
+.#{$--prefix}footer {
+  width: 100%;
   font-size: $--font-small;
   color: $--color-gray-light;
   text-align: center;
   padding: $--gap-lager 0;
-  border-top: $--border-bottom;
+  border-top: $--border;
   a {
     @include link(12, $--color-primary, $--color-contrast, $--color-contrast-dark)
   }
 }
 
-.#{$--prefix}main-box {
-  max-width: 1216px;
-  padding: $--gap-lager;
-  margin: 0 auto;
-  display: flex;
-  .#{$--prefix}main {
-    flex: 1;
-    margin-left: $--gap-lager;
-    overflow: hidden;
-  }
-  .#{$--prefix}aside {
-    width: 186px;
-    .aside-item {
-      margin-bottom: $--gap;
-      h2 {
-        font-weight: normal;
-        @include font-14px();
-        @include reset();
-        color: $--color-gray-light;
-        .iconfont {
-          @include font-16px();
-          margin-right: $--gap-small;
-        }
-        small {
-          font-size: $--font-small;
-          color: $--color-gray-light-1;
-        }
-      }
-      .side-nav-list {
-        > ul {
-          @include reset();
-          > li {
-            margin-bottom: $--gap;
-          }
-          ul {
-            @include reset();
-          }
-          a {
-            display: block;
-            @include font-14px();
-            line-height: 32px;
-            border-bottom: $--border-bottom;
-            @include hoverLine();
-            &:before { 
-              bottom: -2px;
-            }
-          }
-          .first-level {
-            @include font-12px();
-            color: $--color-gray;
-            padding: $--gap-small 0;
-            padding-left: 3px;
-          }
-          @for $i from 1 through 10 {
-            .level-#{$i} {
-              padding-left: $i * $--gap;
-            }
-          }
-          .current {
-            color: $--color-primary;
-          }
-        }
-      }
-      .side-tag-list {
-        padding: 10px 0;
-        a {
-          display: inline-block;
-          white-space: nowrap;
-          @include font-14px();
-          @include hoverLine();
-          margin-bottom: $--gap-small;
-          margin-right: $--gap-small;
-        }
-      }
-    }
-    .gongzonghao {
-      img {
-        width: 100%;
-        border-radius: $--border-radius-4px;
-      }
-    }
-  }
-}
-
+// 通用文章列表
 .#{$--prefix}post-list {
   .item {
     @include blockLine();
@@ -267,10 +290,17 @@ a {
       margin-bottom: $--gap;
     }
     .desc {
-      font-size: $--font-normal;
-      color: $--color-gray;
+      @include font-14px();
+      color: $--color-gray-light-dark;
       @include reset();
       margin-bottom: $--gap;
+    }
+    .more {
+      @include link(12, $--color-primary, $--color-contrast, $--color-contrast-dark);
+      i {
+        font-size: $--font-small;
+        margin-right: $--gap-small;
+      }
     }
     .info {
       ul {
@@ -282,140 +312,13 @@ a {
           color: $--color-gray;
           .iconfont {
             margin-right: 6px;
-            color: $--color-gray-light-1;
+            color: $--color-placeholder;
           }
           a {
             @include link(12, $--color-gray);
             @include hoverLine();
             margin-right: $--gap-small;
           }
-        }
-      }
-    }
-  }
-}
-
-.#{$--prefix}ripple {
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: radial-gradient(circle, $--color-white 10%, transparent 10.01%);
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transform: scale(10, 10);
-    opacity: 0;
-    transition: transform .5s, opacity 1s;
-  }
-  &:active:after {
-    transform: scale(0, 0);
-    opacity: .3;
-    transition: 0s;
-  }
-}
-
-.#{$--prefix}button-primary {
-  @include button(16)
-}
-.#{$--prefix}button-block {
-  width: 100%;
-}
-
-// 分页
-.#{$--prefix}pagination {
-  padding: $--gap;
-  ul {
-    @include reset();
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    li {
-      padding: 0 5px;
-      &:hover a {
-        background-color: #f1f1f1;
-      }
-    }
-    .num a, .prev span, .prev a, .current span, .next span, .next a, .ellipsis span {
-      display: block;
-      padding: 10px $--gap;
-      border: $--border-bottom;
-      border-radius: $--border-radius-4px;
-      transition: $--transition;
-    }
-    .current span {
-      background-color: $--color-primary;
-      border-color: $--color-primary;
-      color: $--color-white;
-    }
-  }
-}
-
-// 面包屑
-.#{$--prefix}breadcrumb {
-  @include blockLine();
-  padding: $--gap $--gap-lager;
-  ul {
-    @include reset();
-    display: flex;
-    align-items: center;
-    .separate {
-      color: $--color-gray-light;
-      padding: 0 $--gap-small;
-      i {
-        font-size: $--font-normal;
-      }
-    }
-    .count {
-      flex: 1;
-      text-align: right;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      color: $--color-gray-light;
-      font-size: $--font-small;
-      h1 {
-        @include reset();
-        font-size: $--font-small;
-        display: inline-block;
-        color: $--color-primary;
-        padding: 0 $--gap-small;
-      }
-      small {
-        color: $--color-primary;
-        padding: 0 $--gap-small;
-      }
-    }
-  }
-}
-
-.#{$--prefix}tabs {
-  .tabs-title {
-    margin-bottom: $--gap;
-    ul {
-      @include reset();
-      display: flex;
-      padding: 0 $--gap-small;
-      li {
-        border-radius: $--border-radius-2px;
-        margin-right: $--gap;
-        a {
-          display: block;
-          padding: 5px $--gap;
-          transition: $--transition;
-        }
-      }
-      .current {
-        border-bottom: 2px $--color-primary solid;
-        a {
-          color: $--color-primary;
         }
       }
     }

@@ -236,7 +236,8 @@ const copyPublic = () => {
 }
 
 const copyFavicon = () => {
-  return src(['./public/favicon.ico', './src/pages/search/all.json'])
+  // return src(['./public/favicon.ico', './src/pages/search/all.json'])
+  return src(['./public/favicon.ico'])
     .pipe(changed(dist, { hasChanged: changed.compareContents }))
     .pipe(dest(`${dist}/`))
 }

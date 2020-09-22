@@ -1,7 +1,7 @@
 module.exports = {
   dist: 'dist',
   tmpDir: '.tmp',
-  port: 8080,
+  port: 3000,
   proxys: {
     '/api': {
       target: 'http://www.totonoo.com',

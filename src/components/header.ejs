@@ -5,10 +5,44 @@
       <h1>Totonoo<small>.com</small></h1>
     </a>
   </div>
-  <%- include('topNav.ejs', {
-    navCurrent
-  })%>
-  <div class="totonoo--top-search">
+  <nav class="top-nav">
+    <ul>
+      <%
+        const navs = [{
+          title: '首页',
+          path: '/',
+          icon: 'icon-home'
+        }, {
+          title: '文集',
+          path: '/collection_list.html',
+          icon: 'icon-docs'
+        }, {
+          title: '标签',
+          path: '/tags.html',
+          icon: 'icon-discount'
+        }, {
+          title: '时光轴',
+          path: '/timeline.html',
+          icon: 'icon-time'
+        }, {
+          title: '关于我',
+          path: '/about.html',
+          icon: 'icon-share'
+        }]
+        navs.forEach((item, index) => {
+      %>
+      <li class="item<%= index == navCurrent ? ' current' : '' %>">
+        <a href="<%= item.path %>">
+          <i class="iconfont <%= item.icon %>"></i>
+          <%= item.title %>
+        </a>
+      </li>
+      <% 
+        })
+      %>
+    </ul>
+  </nav>
+  <div class="top-search">
     <form method="GET" action="/search.html">
       <input type="text" name="keyword" placeholder="试试搜索功能" id="top-search-input">
       <button type="submit"><i class="iconfont icon-search"></i></button>

@@ -74,7 +74,7 @@
   cursor: pointer;
   background-color: $link;
   padding: 10px;
-  border-radius: $--border-radius-4px;
+  border-radius: $--border-radius-normal;
   &:hover {
     background-color: $hover;
   }
@@ -105,8 +105,8 @@
 @mixin blockLine {
   border: $--border;
   margin-bottom: $--gap-lager;
-  transition: $--transition-shadow;
-  border-radius: $--border-radius-4px;
+  transition: $--transition;
+  border-radius: $--border-radius-normal;
   background-color: $--color-white;
   &:hover {
     @include box-shadow();
