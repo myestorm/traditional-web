@@ -1,0 +1,73 @@
+.#{$--prefix}about {
+  .main {
+    padding-left: $--gap-lager;
+  }
+  .detail-main {
+    width: 100%;
+    display: flex;
+    .detail-article {
+      overflow: hidden;
+      flex: 1;
+    }
+    .article-nav {
+      width: 260px;
+      overflow: hidden;
+    }
+  }
+  .detail-article {
+    @include blockLine();
+    padding: $--gap-lager;
+    flex: 1;
+  }
+  .#{$--prefix}article-title {
+    padding: 0 0 $--gap-lager;
+    h1 {
+      font-size: 24px;
+      font-weight: normal;
+    }
+  }
+  .article-nav {
+    min-height: 10px;
+    overflow: hidden;
+    ul {
+      width: 276px;
+      display: block;
+      @include reset();
+      position: fixed;
+      top: $--gap-lager * 2 + $--height-header;
+      right: 6px;
+      transition: $--transition;
+      li {
+        border-left: 2px transparent solid;
+        box-sizing: border-box;
+        padding: 2px 0;
+        transition: $--transition;
+        a {
+          @include font-12px();
+          padding-right: $--gap-lager;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
+          box-sizing: border-box;
+        }
+        &:hover {
+          background-color: $--bg-dark;
+        }
+      }
+      @for $i from 1 through 6 {
+        .h#{$i} {
+          a {
+            padding-left: ($--gap * ($i - 1));
+          }
+        }
+      }
+      .current {
+        border-left-color: $--color-primary;
+        a {
+          color: $--color-primary;
+        }
+      }
+    }
+  }
+}

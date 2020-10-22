@@ -2,7 +2,6 @@
   @include font-16px();
 
   p {
-    letter-spacing: 1px !important;
     line-height: 1.7 !important;
     min-height: 1em !important;
     box-sizing: border-box !important;
@@ -12,10 +11,10 @@
   }
 
   blockquote {
-    border-left: 4px solid $--color-gray;
+    border-left: 4px solid $--color-placeholder;
     padding: 0 15px !important;
     margin: 0px;
-    color: $--color-gray-dark;
+    color: $--color-gray;
     @include font-14px();
   }
 

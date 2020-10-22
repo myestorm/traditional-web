@@ -51,16 +51,23 @@ a {
 .#{$--prefix}main-box {
   flex: 1;
   position: relative;
-  .main {
+  .#{$--prefix}main-scroll {
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
     overflow: auto;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
+  }
+}
+.#{$--prefix}main-layout {
+  display: table;
+  vertical-align: top;
+  box-sizing: border-box;
+  .main {
+    display: table-cell;
+    vertical-align: top;
+    padding: $--gap-lager $--gap $--gap-lager $--gap-lager * 1.5;
   }
 }
 
@@ -68,6 +75,7 @@ a {
 .#{$--prefix}aside {
   width: 186px;
   padding: $--gap-lager 0 $--gap-lager $--gap-lager;
+  overflow: hidden;
   .aside-item {
     margin-bottom: $--gap;
     h2 {
@@ -137,13 +145,6 @@ a {
       border-radius: $--border-radius-normal;
     }
   }
-}
-
-// 主区域
-.#{$--prefix}main {
-  flex: 1;
-  margin-left: $--gap-lager * 0.5;
-  padding: $--gap-lager $--gap-lager 0 $--gap-lager;
 }
 
 // 头部
@@ -320,6 +321,73 @@ a {
             margin-right: $--gap-small;
           }
         }
+      }
+    }
+  }
+}
+
+// 分页
+.#{$--prefix}pagination {
+  padding: $--gap;
+  ul {
+    @include reset();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li {
+      padding: 0 5px;
+      &:hover a {
+        background-color: #f1f1f1;
+      }
+    }
+    .num a, .prev span, .prev a, .current span, .next span, .next a, .ellipsis span {
+      display: block;
+      padding: 10px $--gap;
+      border: $--border;
+      border-radius: $--border-radius-normal;
+      transition: $--transition;
+    }
+    .current span {
+      background-color: $--color-primary;
+      border-color: $--color-primary;
+      color: $--color-white;
+    }
+  }
+}
+
+// 面包屑
+.#{$--prefix}breadcrumb {
+  @include blockLine();
+  padding: $--gap $--gap-lager;
+  ul {
+    @include reset();
+    display: flex;
+    align-items: center;
+    .separate {
+      color: $--color-gray-light;
+      padding: 0 $--gap-small;
+      i {
+        font-size: $--font-normal;
+      }
+    }
+    .count {
+      flex: 1;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: $--color-gray-light;
+      font-size: $--font-small;
+      h1 {
+        @include reset();
+        font-size: $--font-small;
+        display: inline-block;
+        color: $--color-primary;
+        padding: 0 $--gap-small;
+      }
+      small {
+        color: $--color-primary;
+        padding: 0 $--gap-small;
       }
     }
   }

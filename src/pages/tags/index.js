@@ -1,0 +1,5 @@
+import '@assets/plugins/prism/prism.css'
+import '@assets/plugins/prism/prism.js'
+import '@assets/scss/vendor.scss'
+import '@assets/scss/markdown.scss'
+import './index.scss'

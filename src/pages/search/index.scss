@@ -1,0 +1,39 @@
+.#{$--prefix}search {
+  .#{$--prefix}search-main {
+    width: 80%;
+    box-sizing: border-box;
+    padding: $--gap-lager;
+    margin: 0 auto;
+    h1 {
+      @include font-16px;
+      @include reset();
+      padding-bottom: $--gap;
+      strong {
+        color: $--color-primary;
+      }
+    }
+    .high-light {
+      font-style: normal;
+      color: $--color-primary;
+    }
+  }
+
+  .#{$--prefix}search-empty {
+    @include blockLine();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $--gap-lager;
+    height: 30vh;
+    strong {
+      color: $--color-primary;
+      padding: 0 $--gap-small;
+      &::before {
+        content: "“";
+      }
+      &::after {
+        content: "”";
+      }
+    }
+  }
+}

@@ -118,6 +118,7 @@ const getConfigFiles = () => {
 const { entries, htmlTemplate } = getConfigFiles()
 const build = () => {
   return src('./src/pages/index/index.js')
+    .pipe(changed(dist, { hasChanged: changed.compareContents }))
     .pipe(webpack({
       entry: entries,
       output: {
@@ -224,7 +225,6 @@ const build = () => {
         })
       ])
     }))
-    .pipe(changed(dist, { hasChanged: changed.compareContents }))
     .pipe(dest(`${dist}/`))
     .pipe(reload({ stream: true })) // 刷新浏览器
 }

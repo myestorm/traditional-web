@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- `\<\%= htmlWebpackPlugin.options.title \%\>` -%></title>
+  </head>
+  <body>
+    <div class="totonoo--layout totonoo--timeline">
+      <%- include('../../components/header.ejs', {
+        navCurrent: 3
+      }) %>
+      <div class="totonoo--main-box">
+        <div class="totonoo--main-scroll">
+          <div class="totonoo--timeline-box">
+            <ul>
+              <li class="first"><div class="arrow"></div></li>
+              <li class="item">
+                <small>此时此刻</small>
+                <span class="content">青青园中葵，朝露待日曦。阳春布德泽，万物生光辉。</span>
+              </li>
+              <%
+              for (let i=0; i < 10; i++) {
+              %>
+              <li class="item">
+                <small>2020-08-28 10:01</small>
+                <span class="content">不饱食以终日，不弃功于寸阴。</span>
+              </li>
+              <%
+              }
+              %>
+              <li class="last"><div class="arrow"></div></li>
+            </ul>
+          </div>
+          <%- include('../../components/footer.ejs') %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- `\<\%= htmlWebpackPlugin.options.title \%\>` -%></title>
+  </head>
+  <body>
+    <div class="totonoo--layout totonoo--timeline">
+      <%- include('../../components/header.ejs', {
+        navCurrent: 1
+      }) %>
+      <div class="totonoo--timeline">
+        <ul>
+          <li class="first"><div class="arrow"></div></li>
+          <li class="item">
+            <small>此时此刻</small>
+            <span class="content">青青园中葵，朝露待日曦。阳春布德泽，万物生光辉。</span>
+          </li>
+          <%
+          for (let i=0; i < 10; i++) {
+          %>
+          <li class="item">
+            <small>2020-08-28 10:01</small>
+            <span class="content">不饱食以终日，不弃功于寸阴。</span>
+          </li>
+          <%
+          }
+          %>
+          <li class="last"><div class="arrow"></div></li>
+        </ul>
+      </div>
+      <%- include('../../components/footer.ejs') %>
+    </div>
+  </body>
+</html>
