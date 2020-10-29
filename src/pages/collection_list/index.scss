@@ -37,3 +37,39 @@
     }
   }
 }
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  .#{$--prefix}collection-list {
+    .#{$--prefix}bookshelf {
+      .image-text {
+        padding-bottom: $--gap-lager;
+        ul {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 800px) {
+  .#{$--prefix}collection-list {
+    .#{$--prefix}bookshelf {
+      .image-text {
+        padding-bottom: $--gap-lager;
+        ul {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .#{$--prefix}collection-list {
+    .#{$--prefix}bookshelf {
+      .image-text {
+        padding-bottom: $--gap-lager;
+        ul {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+}

@@ -37,3 +37,11 @@
     }
   }
 }
+@media screen and (max-width: 980px) {
+  .#{$--prefix}search {
+    .#{$--prefix}search-main {
+      width: 100%;
+      padding: $--gap;
+    }
+  }
+}

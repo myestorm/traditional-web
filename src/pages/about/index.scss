@@ -71,3 +71,16 @@
     }
   }
 }
+@media screen and (max-width: 980px) {
+  .#{$--prefix}about {
+    .detail-article {
+      padding: 0;
+      border: 0;
+      background: none;
+      box-shadow: 0;
+    }
+    .#{$--prefix}article-title {
+      padding-bottom: 0;
+    }
+  }
+}

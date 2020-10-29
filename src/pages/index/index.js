@@ -1,6 +1,7 @@
 import '@assets/scss/vendor.scss'
 import './index.scss'
 import $ from 'jquery'
+import '@assets/scripts/header.js'
 $(() => {
   const tabs = $('#totonoo--tabs')
   const tabsTitle = tabs.find('.tabs-title')

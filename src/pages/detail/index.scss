@@ -108,3 +108,28 @@
     }
   }
 }
+
+@media screen and (max-width: 980px) {
+  .article-nav {
+    display: none;
+  }
+  .#{$--prefix}detail {
+    .detail-article {
+      padding: 0;
+      border: 0;
+      background: none;
+      box-shadow: 0;
+    }
+    .#{$--prefix}article-title {
+      .info {
+        ul {
+          display: block;
+          li {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}

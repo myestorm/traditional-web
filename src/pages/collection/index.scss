@@ -139,4 +139,45 @@
       }
     }
   }
+  .book-nav {
+    display: none;
+  }
+}
+@media screen and (max-width: 980px) {
+  .#{$--prefix}layout-collection {
+    .collection-box {
+      .collection-list {
+        width: 60%;
+        position: fixed;
+        left: -100%;
+        background: $--bg-color;
+        z-index: 10;
+        transition: $--transition;
+        .drag-bar {
+          display: none;
+        }
+      }
+      .collection-main {
+        padding-right: 0;
+      }
+    }
+    .collection-nav {
+      display: none;
+    }
+    .book-nav {
+      position: fixed;
+      right: 12px;
+      top: $--height-header + 45;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      border: $--border-dark;
+      cursor: pointer;
+      line-height: 24px;
+      color: $--color-primary;
+      border-radius: $--border-radius-normal / 2;
+      background-color: $--bg-dark;
+      outline: none;
+    }
+  }
 }

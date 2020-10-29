@@ -13,6 +13,10 @@
           path: '/',
           icon: 'icon-home'
         }, {
+          title: '文章',
+          path: '/categories.html',
+          icon: 'icon-folder-close'
+        }, {
           title: '文集',
           path: '/collection_list.html',
           icon: 'icon-docs'
@@ -42,6 +46,112 @@
       %>
     </ul>
   </nav>
+  <div class="top-search">
+    <form method="GET" action="/search.html">
+      <input type="text" name="keyword" placeholder="试试搜索功能" id="top-search-input">
+      <button type="submit"><i class="iconfont icon-search"></i></button>
+    </form>
+  </div>
+</header>
+<%
+const current = '散文'
+const aside = {
+  categories: [
+    {
+      title: '工作台',
+      children: [
+        {
+          title: '文档',
+          children: [
+            {
+              title: '学习笔记'
+            },
+            {
+              title: '博客专栏'
+            },
+            {
+              title: '旅行攻略'
+            }
+          ]
+        },
+        {
+          title: '知识库',
+          children: [
+            {
+              title: '散文'
+            },
+            {
+              title: '杂文'
+            },
+            {
+              title: '小说'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      title: '实践',
+      children: [
+        {
+          title: '空间',
+          children: []
+        },
+        {
+          title: '项目',
+          children: []
+        }
+      ]
+    }
+  ]
+}
+%>
+<header class="totonoo--top-header-small">
+  <div class="logo">
+    <a href="/">
+      <i class="logo-icon"></i>
+    </a>
+  </div>
+  <div class="nav-all">
+    <button class="nav-btn" id="top-nav-btn"><i class="iconfont icon-modular"></i></button>
+    <nav class="top-nav" id="top-nav-small-nav">
+      <ul>
+        <%
+          navs.forEach((item, index) => {
+        %>
+        <li class="item<%= index == navCurrent ? ' current' : '' %>">
+          <a href="<%= item.path %>">
+            <i class="iconfont <%= item.icon %>"></i>
+            <%= item.title %>
+          </a>
+          <% if (index == 1) { %>
+          <nav class="side-nav-list">
+            <%
+            const _categories = aside.categories || []
+            const html = []
+            const forEachTree = (data = [], level = 0) => {
+              html.push('<ul>')
+              data.forEach(item => {
+                html.push(`<li><a href="categories.html" class="${level == 0 ? 'first-level' : ''} level-${level} ${item.title == current ? 'current' : ''}">${item.title}</a>`)
+                if (item.children && item.children.length > 0){
+                  forEachTree(item.children, (level + 1))
+                }
+                html.push('</li>')
+              })
+              html.push('</ul>')
+            }
+            forEachTree(_categories, 0)
+            %>
+            <%- html.join('') %>
+          </nav>
+          <% } %>
+        </li>
+        <% 
+          })
+        %>
+      </ul>
+    </nav>
+  </div>
   <div class="top-search">
     <form method="GET" action="/search.html">
       <input type="text" name="keyword" placeholder="试试搜索功能" id="top-search-input">

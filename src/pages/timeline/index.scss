@@ -93,3 +93,15 @@ $--radius: 18px;
     }
   }
 }
+@media screen and (max-width: 786px) {
+  .#{$--prefix}timeline-box {
+    ul {
+      .item {
+        small {
+          width: 100px;
+          left: -100px;
+        }
+      }
+    }
+  }
+}

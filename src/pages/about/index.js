@@ -5,6 +5,7 @@ import '@assets/scss/vendor.scss'
 import './index.scss'
 import $ from 'jquery'
 import Nav from '@assets/scripts/nav.js'
+import '@assets/scripts/header.js'
 
 $(() => {
   const detailMain = $('#detail-main')
