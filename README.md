@@ -54,4 +54,4 @@ src // 项目开发目录
 - `dist/config.json` 这里包含所有页面对应的css和js，且包含应hash版本。
 - 模板使用的ejs模板，`pages` 下的ejs模板会首先编译到`.tmp` 下，然后再交给`webpack`处理。
 - 默认引入了`jQuery`。
-- 模板具体应用的效果，访问[https://wwww.totonoo.com](https://wwww.totonoo.com)。
+- 模板具体应用的效果，访问[https://www.totonoo.com](https://www.totonoo.com)。
