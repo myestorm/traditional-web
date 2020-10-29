@@ -35,7 +35,7 @@ src // 项目开发目录
 
 ## pages/config.json
 
-```json
+``` javascript
 {
   "title": "首页", // 页面标题
   "filename": "index" // 生成的文件名称
