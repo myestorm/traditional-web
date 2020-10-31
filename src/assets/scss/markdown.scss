@@ -82,6 +82,18 @@
     display: none;
   }
   img {
+    max-width: 100%;
+  }
+  table {
     width: 100%;
+    border: 1px #e7e7e7 solid;
+    border-collapse: collapse;
+    td, th {
+      border: 1px #e7e7e7 solid;
+      padding: 6px 12px;
+    }
+    th {
+      background-color: #f8f8f8;
+    }
   }
 }
