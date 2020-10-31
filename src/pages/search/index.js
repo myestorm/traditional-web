@@ -54,7 +54,7 @@ const pageInit = (allData) => {
     <h3 class="title">
       <a href="<%= global.mkArticleLink(item.filepath, item.filename) %>"><%- global.highLight(item.title) %></a>
     </h3>
-    <p class="desc"><%- global.highLight(item.desc)%>...</p>
+    <p class="desc"><%- global.highLight(item.desc)%>... <a href="<%= global.mkArticleLink(item.filepath, item.filename) %>" class="more"><i class="iconfont icon-search"></i>详细</a></p>
     <div class="info">
       <ul>
         <li><i class="iconfont icon-folder-close"></i><a href="<%= global.mkArticleLink(item.filepath, 'index') %>"><%= item.catalogueName %></a></li>

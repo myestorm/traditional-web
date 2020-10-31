@@ -81,7 +81,7 @@ class GenerateAssetsConfig {
 }
 
 const getConfigFiles = () => {
-  const folder = './src/pages/**/*.json'
+  const folder = './src/pages/**/config.json'
   const files = glob.sync(folder)
   const entries = {} // webpack 入口文件
   const htmlTemplate = [new GenerateAssetsConfig()] // webpack HtmlWebpackPlugin
