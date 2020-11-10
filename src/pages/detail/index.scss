@@ -20,8 +20,8 @@
   }
   .#{$--prefix}article-title {
     padding: 0 0 $--gap-lager;
-    h1 {
-      font-size: 24px;
+    .page-title {
+      font-size: 36px;
       font-weight: normal;
     }
     .info {
