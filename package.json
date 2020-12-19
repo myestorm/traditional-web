@@ -1,7 +1,7 @@
 {
   "name": "traditional-web",
   "version": "0.0.2",
-  "description": "",
+  "description": "Traditional web development，Multi-page application",
   "main": "index.js",
   "scripts": {
     "serve": "cross-env NODE_ENV=development webpack serve",
@@ -9,9 +9,17 @@
     "lint": "eslint . --ext .ts",
     "test": "mocha -r ts-node/register test/**/*.test.ts"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myestorm/traditional-web.git"
+  },
+  "keywords": ["webpack", "webpack5", "ejs-templates", "eslint"],
   "author": "wenxue.cwx<coolman_84@163.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/myestorm/traditional-web/issues"
+  },
+  "homepage": "https://github.com/myestorm/traditional-web#readme",
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/jquery": "^3.5.4",
