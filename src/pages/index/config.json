@@ -1,0 +1,6 @@
+{
+  "title": "首页",
+  "filename": "index",
+  "template": "index.html",
+  "entry": "index.ts"
+}

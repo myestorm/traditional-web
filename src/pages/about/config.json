@@ -1,0 +1,6 @@
+{
+  "title": "关于我们",
+  "filename": "about",
+  "template": "index.html",
+  "entry": "index.ts"
+}

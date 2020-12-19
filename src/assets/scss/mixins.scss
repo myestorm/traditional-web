@@ -1,0 +1,28 @@
+@mixin reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin textHoverLine ($height: 2px) {
+  position: relative;
+  &:before {
+    display: block;
+    overflow: hidden;
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: -$height;
+    height: $height;
+    width: 100%;
+    background: $--color-primary;
+    transform: scale(0);
+    transition: $--transition;
+    border-radius: $height;
+  }
+  &:hover:before{
+    transform: scale(1);
+  }
+}

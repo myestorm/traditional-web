@@ -1,0 +1,32 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    // 自定义规则
+    "indent": ["error", 2], // 强制使用2个空格缩进
+    "quotes": ["error", "single"], // 强制使用单引号
+    "semi": ["error", "always"], // 强制使用分号
+    "eol-last": ["error", "always"], // 空行结尾
+    "no-trailing-spaces": "error" // 禁用行尾空白 
+  },
+  "env": {
+    // 环境变量（包含多个预定义的全局变量）
+    // browser: true,
+    // node: true,
+    // mocha: true,
+    // jest: true,
+    // jquery: true
+  },
+  "globals": {
+    // 全局变量（设置为 false 表示它不允许被重新赋值）
+    // myGlobal: false
+  }
+}

@@ -1,0 +1,918 @@
+@import '@assets/font/iconfont.css';
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: $--font-family;
+  background-color: $--color-white;
+  color: $--color-gray;
+  line-height: 1.6;
+  textarea, pre, code {
+    font-family: $--font-family;
+  }
+}
+body {
+  background: linear-gradient(to right, #f5f5f5 0%,#f5f5f5 50%, #ffffff 50%);
+  color: $--color-black-light;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: $--color-black-light;
+}
+
+::-webkit-scrollbar {
+  width: 2 * $--min-space - 2;
+  height: 2 * $--min-space - 2;
+}
+::-webkit-scrollbar-track {
+  background: rgba($color: #000000, $alpha: 0.06);
+  border-radius: 2 * $--min-space;
+}
+::-webkit-scrollbar-thumb {
+  transition: $--transition;
+  background: rgba($color: #000000, $alpha: 0.16);
+  border-radius: 2 * $--min-space;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba($color: #000000, $alpha: 0.32);
+}
+
+.#{$--prefix}flying-wing {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  .green-dragon {
+    width: $--green-dragon-width;
+    flex: 0 0 auto;
+  }
+  .old-ox {
+    flex: 1 1 auto;
+    overflow: hidden;
+    background-color: $--color-white;
+  }
+  .white-tiger {
+    width: $--white-tiger-width;
+    flex: 0 0 auto;
+    background-color: $--color-white;
+  }
+}
+
+.wrapper {
+  max-width: $--max-width;
+  margin: 0 auto;
+}
+
+.header-fixed {
+  padding-top: $--header-height;
+}
+.#{$--prefix}header {
+  width: 100%;
+  height: $--header-height;
+  box-shadow: 0 3px 8px 0 rgba(116, 129, 141, 0.1);
+  border-bottom: 1px solid #e6e6e6;
+  background-color: $--color-white;
+  box-sizing: border-box;
+  padding: 5 * $--min-space 0;
+  transition: $--transition;
+  &.fixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+  }
+  .top-logo {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    border-right: 1px solid rgba($color: #000000, $alpha: 0.04);
+    padding: 0 4 * $--min-space;
+    box-sizing: border-box;
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background-image: url(@assets/images/logo/logo_primary.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: block;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $--color-gray;
+      transition: $--transition;
+      &:hover {
+        color: $--color-primary;
+      }
+      h1 {
+        @include reset();
+        font-size: 7 * $--min-space;
+        margin-left: 3 * $--min-space;
+        small {
+          font-weight: lighter;
+          font-size: 28px;
+        }
+      }
+    }
+  }
+  .top-nav {
+    flex: 1;
+    margin: 0 4 * $--min-space;
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    .top-nav-list {
+      flex: 1;
+      height: 100%;
+      ul {
+        @include reset();
+        display: flex;
+        align-items: center;
+        height: 100%;
+        justify-content: center;
+        li {
+          @include reset();
+          padding: 0 4 * $--min-space;
+          height: 100%;
+          border-radius: $--min-space;
+          cursor: pointer;
+          transition: $--transition;
+          white-space: nowrap;
+          &:hover {
+            background-color: $--color-bg;
+            a {
+              color: $--color-primary;
+            }
+          }
+        }
+        .current {
+          a {
+            color: $--color-primary;
+          }
+        }
+        a {
+          color: $--color-gray;
+          font-size: 4 * $--min-space;
+          text-decoration: none;
+          display: block;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          transition: $--transition;
+          .iconfont {
+            margin-right: $--min-space;
+          }
+        }
+      }
+    }
+  }
+  .top-search {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    border-left: 1px solid rgba($color: #000000, $alpha: 0.04);
+    padding: 0 4 * $--min-space;
+    box-sizing: border-box;
+    position: relative;
+    transition: $--transition;
+    .top-search-input {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      box-sizing: border-box;
+      padding: 0 4 * $--min-space;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      color: $--color-1;
+      cursor: pointer;
+      input {
+        flex: 1;
+        margin-left: $--min-space * 2;
+        height: 100%;
+        border: 0;
+        outline: 0;
+        max-width: $--min-space * 40;
+        &::placeholder {
+          color: $--color-gray-light;
+        }
+      }
+    }
+  }
+  .top-middle-search {
+    display: none;
+  }
+}
+
+.#{$--prefix}body {
+  width: 100%;
+  min-height: calc(100vh - #{$--header-height});
+}
+.#{$--prefix}main {
+  max-width: $--main-width;
+  min-height: calc(100vh - #{$--header-height} - 60px);
+  margin: 0 auto;
+}
+.#{$--prefix}page-tree-placeholder {
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  border-right: 1px solid #e8e8e8;
+  .#{$--prefix}page-tree {
+    transition: $--transition;
+    box-sizing: border-box;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: $--min-space * 2 0 $--min-space * 2 2px;
+    &.fixed {
+      width: $--green-dragon-width - 1px;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 10;
+    }
+    ul, li {
+      @include reset();
+    }
+    > ul > li {
+      border-right: 0;
+      margin: $--min-space 0;
+    }
+    li li {
+      padding-left: $--min-space * 5;
+      margin-top: -1px;
+    }
+    a {
+      font-size: $--min-space * 4 - 2;
+      text-decoration: none;
+      color: rgba($color: #000000, $alpha: 0.5);
+      display: flex;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: $--min-space * 8;
+      padding: 0 $--min-space * 2;
+      transition: $--transition;
+      background-color: $--color-bg;
+      border: 1px solid $--color-3;
+      border-right: 0;
+      border-collapse: collapse;
+      &:hover {
+        color: $--color-primary;
+        background-color: $--color-white;
+        position: relative;
+        z-index: 2;
+      }
+      span {
+        @include textHoverLine(2px);
+        &:hover {
+          color: $--color-primary;
+        }
+      }
+      .iconfont {
+        margin: 0 $--min-space * 2 0 $--min-space;
+      }
+      &.current {
+        color: $--color-primary;
+        background-color: rgba($color: $--color-primary, $alpha: 0.02);
+        position: relative;
+        &::after {
+          content: " ";
+          position: absolute;
+          width: 3px;
+          height: 50%;
+          display: block;
+          left: -2px;
+          top: 25%;
+          background-color: $--color-primary;
+          border-radius: 6px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+.#{$--prefix}article {
+  margin: 0 auto;
+  min-height: 100%;
+}
+.#{$--prefix}article-nav {
+  width: 100%;
+  max-height: 100%;
+  border-left: 1px solid #e8e8e8;
+  transition: top .35s ease;
+  &.fixed {
+    width: $--white-tiger-width;
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+  ul, li {
+    @include reset();
+  }
+  ul {
+    padding: $--min-space * 3 0;
+
+    li {
+      transition: $--transition;
+      border-left: 3px transparent solid;
+      position: relative;
+      left: -2px;
+      &:hover {
+        background-color: $--color-bg;
+      }
+      &.current {
+        border-left-color: $--color-primary;
+        a {
+          color: $--color-primary;
+        }
+      }
+    }
+    a {
+      font-size: $--min-space * 3;
+      padding-right: $--min-space * 4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      box-sizing: border-box;
+      text-decoration: none;
+      color: rgba($color: #000000, $alpha: 0.5);
+      padding: $--min-space / 2 0;
+    }
+  }
+  @for $i from 2 through 6 {
+    .h#{$i} {
+      padding-left: (($--min-space * 4) * ($i - 1));
+    }
+  }
+}
+
+.#{$--prefix}aside {
+  width: 100%;
+  min-height: 100%;
+  border-left: 1px solid #e8e8e8;
+  box-sizing: border-box;
+  padding: $--min-space * 4;
+  h2 {
+    @include reset();
+    font-size: $--min-space * 4;
+    padding-bottom: $--min-space * 4;
+    .iconfont {
+      margin-right: $--min-space;
+    }
+  }
+  .img-title {
+    img {
+      width: 100%;
+      display: block;
+      opacity: 0.6;
+      transition: $--transition;
+    }
+    ul, li {
+      @include reset();
+    }
+    li {
+      padding-bottom: $--min-space * 4;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      font-size: $--min-space * 3;
+      position: relative;
+      background-color: #000000;
+      border-radius: $--min-space;
+      overflow: hidden;
+      .iconfont {
+        font-size: $--min-space * 3;
+      }
+      .info {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        color: $--color-3;
+        padding: $--min-space * 3 $--min-space * 4;
+      }
+      &:hover {
+        img {
+          opacity: 0.8;
+        }
+      }
+    }
+    h3 {
+      @include reset();
+      font-size: $--min-space * 3;
+    }
+  }
+  .text-list {
+    padding: 0 0 $--min-space * 2;
+    ul, ol {
+      @include reset();
+    }
+    li {
+      display: block;
+      width: 100%;
+    }
+    a {
+      display: block;
+      transition: $--transition;
+      border-radius: $--min-space;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &:hover {
+        padding: 0 $--min-space * 2;
+        background-color: $--color-bg-light;
+      }
+    }
+    span {
+      @include textHoverLine();
+      font-size: $--min-space * 3;
+      text-decoration: none;
+      color: $--color-4;
+      &:hover {
+        color: $--color-primary;
+      }
+    }
+  }
+  .tags {
+    h3 {
+      @include reset();
+      color: $--color-gray-light;
+      font-size: $--min-space * 3;
+      margin-top: $--min-space * 2;
+      margin-bottom: $--min-space;
+      .iconfont {
+        font-size: $--min-space * 3;
+        margin-right: $--min-space;
+      }
+    }
+    a {
+      @include textHoverLine();
+      display: inline-block;
+      font-size: $--min-space * 3;
+      text-decoration: none;
+      white-space: nowrap;
+      color: $--color-4;
+      margin-right: $--min-space;
+      &:hover {
+        color: $--color-primary;
+      }
+    }
+  }
+  > ul {
+    @include reset();
+    li {
+      @include reset();
+      a {
+        @include textHoverLine();
+        display: inline-block;
+        font-size: $--min-space * 3;
+        text-decoration: none;
+        white-space: nowrap;
+        color: $--color-4;
+        margin-right: $--min-space;
+        &:hover {
+          color: $--color-primary;
+        }
+      }
+    }
+  }
+}
+
+.#{$--prefix}footer {
+  width: $--main-width;
+  margin: 0 auto;
+  text-align: center;
+  padding: $--min-space * 5 0;
+  font-size: $--min-space * 3;
+  color: rgba(0,0,0, 0.4);
+  border-top: 1px solid $--color-bg;
+  a {
+    text-decoration: none;
+    color: $--color-primary;
+    transition: $--transition;
+    margin: 0 $--min-space;
+    opacity: 0.72;
+    &:hover {
+      color: $--color-taupe;
+    }
+  }
+}
+
+.#{$--prefix}breadcrumb {
+  ul, li {
+    @include reset();
+  }
+  > ul {
+    display: flex;
+    align-items: center;
+    padding: $--min-space * 4 0 $--min-space * 3;
+    overflow: hidden;
+    padding-right: $--min-space * 8;
+    li {
+      padding-right: $--min-space * 2;
+      font-size: $--min-space * 3 + 2;
+      color: $--color-gray-light;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      a {
+        text-decoration: none;
+        font-size: $--min-space * 3 + 2;
+        color: $--color-4;
+        transition: $--transition;
+        @include textHoverLine();
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:hover {
+          color: $--color-primary;
+        }
+      }
+      strong {
+        font-weight: normal;
+      }
+    }
+    .separate {
+      .iconfont {
+        font-size: $--min-space * 3;
+        color: $--color-gray-light;
+      }
+    }
+  }
+}
+
+// 分页
+.#{$--prefix}pagination {
+  padding: $--main-padding;
+  ul {
+    @include reset();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li {
+      padding: 0 $--min-space;
+      &:hover a {
+        background-color: #f1f1f1;
+      }
+    }
+    .num a, .prev span, .prev a, .current span, .next span, .next a, .ellipsis span {
+      display: block;
+      padding: $--min-space * 2 $--min-space * 4;
+      border: 1px solid $--color-1;
+      border-radius: $--min-space;
+      transition: $--transition;
+      font-size: $--min-space * 4;
+      text-decoration: none;
+      color: rgba($color: $--color-gray, $alpha: 0.8);
+    }
+    .current span {
+      background-color: $--color-primary;
+      border-color: $--color-primary;
+      color: $--color-white;
+    }
+  }
+}
+
+// 通用文章列表
+.#{$--prefix}post-list {
+  .item {
+    cursor: pointer;
+    padding: $--min-space * 3 $--min-space * 5;
+    border: 1px solid $--color-2;
+    border-radius: $--min-space;
+    margin-bottom: $--min-space * 5;
+    transition: $--transition;
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,.08);
+    }
+    a {
+      text-decoration: none;
+    }
+    .title {
+      @include reset();
+      position: relative;
+      padding-left: $--min-space * 3;
+      &:before {
+        width: 3px;
+        height: 18px;
+        display: block;
+        background-color: $--color-primary;
+        border-radius: 3px;
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -9px;
+        overflow: hidden;
+      }
+      a {
+        color: $--color-black-light;
+        font-size: $--min-space * 4;
+        display: inline-block;
+        padding: $--min-space 0;
+        @include textHoverLine();
+        &:hover {
+          color: $--color-primary;
+        }
+      }
+    }
+    .desc {
+      @include reset();
+      color: $--color-4;
+      font-size: $--min-space * 3 + 2;
+      line-height: 1.8;
+      padding: $--min-space 0;
+      word-break: break-all;
+      text-align: justify;
+    }
+    .more {
+      color: $--color-primary;
+      font-size: $--min-space * 3;
+      transition: $--transition;
+      &:hover {
+        color: $--color-taupe;
+      }
+      i {
+        font-size: $--min-space * 3;
+        margin-right: $--min-space;
+      }
+    }
+    .info {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        @include reset();
+        li {
+          padding-right: $--min-space * 4;
+          font-size: $--min-space * 3;
+          color: $--color-4;
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+          .iconfont {
+            margin-right: $--min-space;
+            color: $--color-1;
+          }
+          a {
+            @include textHoverLine();
+            color: $--color-4;
+            margin-right: $--min-space;
+            &:hover {
+              color: $--color-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 抽屉
+.#{$--prefix}drawer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+  display: flex;
+  justify-content: flex-start;
+  &.totonoo--drawer-rtl {
+    justify-content: flex-end;
+  }
+  .content {
+    width: 76%;
+    max-width: 500px;
+    height: 100%;
+    background-color: $--color-white;
+    box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+    display: flex;
+    flex-direction: column;
+    .drawer-header {
+      display: flex;
+      padding: $--min-space * 3;
+      .title {
+        flex: 1;
+      }
+      .closed {
+        button {
+          border: 0;
+          background: none;
+          cursor: pointer;
+          transition: $--transition;
+          outline: none;
+          &:hover {
+            color: $--color-primary;
+          }
+        }
+      }
+    }
+    .drawer-content {
+      flex: 1;
+      position: relative;
+      .drawer-content-box {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+}
+
+.#{$--prefix}drawer-tree {
+  @include reset();
+  border-right: 0;
+  ul, li {
+    @include reset();
+  }
+  > li {
+    border-right: 0;
+    margin: $--min-space 0;
+  }
+  li li {
+    padding-left: $--min-space * 5;
+    margin-top: -1px;
+  }
+  a {
+    font-size: $--min-space * 4 - 2;
+    text-decoration: none;
+    color: rgba($color: #000000, $alpha: 0.5);
+    display: flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: $--min-space * 8;
+    padding: 0 $--min-space * 2;
+    transition: $--transition;
+    background-color: #f8f8f8;
+    border: 1px solid #eeeeee;
+    border-right: 0;
+    border-collapse: collapse;
+    &:hover {
+      color: $--color-primary;
+      background-color: #ffffff;
+      position: relative;
+      z-index: 2;
+    }
+    span {
+      @include textHoverLine(2px);
+      &:hover {
+        color: $--color-primary;
+      }
+    }
+    .iconfont {
+      margin: 0 $--min-space * 2 0 $--min-space;
+    }
+    &.current {
+      color: $--color-primary;
+      background-color: rgba($color: $--color-primary, $alpha: 0.02);
+      position: relative;
+      &::after {
+        content: " ";
+        position: absolute;
+        width: 3px;
+        height: 50%;
+        display: block;
+        left: -2px;
+        top: 25%;
+        background-color: $--color-primary;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.#{$--prefix}right-menu {
+  border: 0;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  transition: $--transition;
+  color: $--color-gray-light;
+  display: none;
+  .iconfont {
+    font-size: $--min-space * 5;
+  }
+  &:hover {
+    color: $--color-primary;
+  }
+}
+.#{$--prefix}small-header {
+  display: none;
+  align-items: center;
+  .top-menu {
+    height: $--min-space * 11;
+    border: 0;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    transition: $--transition;
+    color: $--color-4;
+    padding: 0 $--min-space * 5;
+    .iconfont {
+      font-size: $--min-space * 8;
+    }
+    &:hover {
+      color: $--color-primary;
+    }
+  }
+  .top-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    border: 0;
+    padding: 0;
+  }
+  .top-small-search {
+    width: $--min-space * 14;
+    height: $--min-space * 11;
+    position: relative;
+    .top-search {
+      width: 60px;
+      overflow: hidden;
+      border: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      input {
+        display: none;
+      }
+      &.block {
+        width: $--min-space * 50;
+        background-color: $--color-white;
+        box-shadow: $--dark-shadow;
+        input {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1360px) {
+  .#{$--prefix}flying-wing {
+    .white-tiger {
+      display: none;
+    }
+  }
+  .#{$--prefix}right-menu {
+    display: block;
+  }
+  .#{$--prefix}header {
+    .top-middle-search {
+      width: $--white-tiger-width - 60px;
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .#{$--prefix}flying-wing {
+    .green-dragon {
+      display: none;
+    }
+    .white-tiger {
+      display: none;
+    }
+  }
+  .#{$--prefix}large-header {
+    display: none;
+  }
+  .#{$--prefix}small-header {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .#{$--prefix}flying-wing {
+    .old-ox {
+      padding: 0 $--min-space * 5;
+    }
+  }
+  .#{$--prefix}footer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .#{$--prefix}pagination {
+    ul {
+      .num, .ellipsis, .current {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <%- require('../../components/header.html')({
+    current: 0
+  })%>
+  <div class="totonoo--body">
+    <div class="wrapper">
+      <div class="totonoo--flying-wing">
+        <div class="green-dragon">
+          <%- require('../../components/tree.html')({
+            list: false
+          })%>
+        </div>
+        <div class="old-ox">
+          <div class="totonoo--main">
+            <main class="totonoo--index">
+              <div class="totonoo--tabs" id="totonoo--tabs">
+                <div class="tabs-title">
+                  <ul>
+                    <li class="current"><a href="javascript:;">最新</a></li>
+                    <li><a href="javascript:;">推荐</a></li>
+                  </ul>
+                  <button class="totonoo--right-menu"><i class="iconfont icon-right-menu"></i></button>
+                </div>
+                <div class="tabs-content">
+                  <div class="tabs-content-item">
+                    <%- require('../../components/postlist.html')()%>
+                  </div>
+                  <div class="tabs-content-item">
+                    <%- require('../../components/postlist.html')()%>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+          <%- require('../../components/footer.html')()%>
+        </div>
+        <div class="white-tiger">
+          <%- require('../../components/aside.html')()%>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

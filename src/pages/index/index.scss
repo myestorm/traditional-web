@@ -1,0 +1,51 @@
+@import '@assets/scss/variables.scss';
+@import '@assets/scss/mixins.scss';
+@import '@assets/scss/vendor.scss';
+
+.#{$--prefix}index {
+  padding: $--main-padding;
+  padding-bottom: 0;
+}
+.#{$--prefix}tabs {
+  .tabs-title {
+    padding: 0 0 $--min-space * 4 0;
+    display: flex;
+    ul {
+      @include reset();
+      display: flex;
+      flex: 1;
+      li {
+        background-color: $--color-gray;
+        a {
+          color: $--color-gray-light;
+          display: block;
+          line-height: $--min-space * 9;
+          padding: 0 $--min-space * 6;
+          font-size: $--min-space * 4 - 2;
+          transition: $--transition;
+          &:hover {
+            color: $--color-white;
+          }
+        }
+        &.current {
+          background-color: $--color-primary;
+          a {
+            color: $--color-white;
+          }
+        }
+        &:first-child {
+          border-radius: $--min-space 0 0 $--min-space;
+        }
+        &:last-child {
+          border-radius: 0 $--min-space $--min-space 0;
+        }
+      }
+    }
+  }
+  .tabs-content-item {
+    display: none;
+    &:first-child {
+      display: block;
+    }
+  }
+}
